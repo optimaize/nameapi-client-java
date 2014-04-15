@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>demosoapserver</artifactId>
+        <groupId>com.optimaize.demosoapserver</groupId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.nameapi.client</groupId>
+    <artifactId>nameapi-client</artifactId>
+    <name>nameapi-client</name>
+    <version>0.1-SNAPSHOT</version>
+    <url>https://github.com/fabiankessler/nameapi-client-java</url>
+
+    <description>
+        Java Client for the NameAPI Web Service.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.7</java.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.optimaize.soapworks.client</groupId>
+            <artifactId>soapworks-client</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nameapi.ontology</groupId>
+            <artifactId>nameapi-ontology</artifactId>
+            <version>4.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.6</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
