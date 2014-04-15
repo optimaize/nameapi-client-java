@@ -2,10 +2,10 @@ package org.nameapi.client.services.email.disposableemailaddressdetector;
 
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
-import crema.lang.Maybe;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
 import org.nameapi.client.services.email.disposableemailaddressdetector.wsdl.SoapDisposableEmailAddressDetector;
+import org.nameapi.client.services.email.disposableemailaddressdetector.wsdl.SoapDisposableEmailAddressDetectorResult;
 import org.nameapi.client.services.email.disposableemailaddressdetector.wsdl.SoapDisposableEmailAddressDetectorService;
 
 import java.net.URL;
@@ -24,7 +24,7 @@ import java.util.concurrent.Callable;
  * and can often not be detected as such.</p>
  */
 public class DisposableEmailAddressDetectorCommand
-        extends NameApiBaseCommand<SoapDisposableEmailAddressDetector, String, Maybe>
+        extends NameApiBaseCommand<SoapDisposableEmailAddressDetector, String, DisposableEmailAddressDetectorResult>
 {
 
     private static final String servicePath = "/email/disposableemailaddressdetector";
@@ -34,8 +34,9 @@ public class DisposableEmailAddressDetectorCommand
     }
 
     @Override @NotNull
-    public Maybe call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
-        return getPort(ec).isDisposable(getContext(ec), arg.get()).getDisposable();
+    public DisposableEmailAddressDetectorResult call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
+        SoapDisposableEmailAddressDetectorResult result = getPort(ec).isDisposable(getContext(ec), arg.get());
+        return new DisposableEmailAddressDetectorResult(result.getDisposable());
     }
 
     @NotNull @Override
