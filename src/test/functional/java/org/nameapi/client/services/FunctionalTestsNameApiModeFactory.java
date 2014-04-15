@@ -13,7 +13,7 @@ import org.nameapi.ontology.input.context.Priority;
  */
 public class FunctionalTestsNameApiModeFactory extends NameApiModeFactory {
 
-    private static final String API_KEY = "fcb754ee9a95b2863d0f969936b87166-unitTests"; //null;
+    private static final String API_KEY = null;
 
     private static final Mode unitTestMode = minimal(makeContext())
             //.with(TimeoutExtension.TIMEOUT, Duration.millis(5000))
