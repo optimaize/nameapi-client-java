@@ -2,7 +2,7 @@ package org.nameapi.client.services.validator.randomtyping.textfieldrandomtyping
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ public class TextFieldRandomTypingDetectorCommandTest {
     @Test(dataProvider="testSome")
     public void testSome(String name, int minIncl, int maxIncl) throws Exception {
         TextFieldRandomTypingDetectorCommand command = new TextFieldRandomTypingDetectorCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         Integer result = executor.execute(command, mode, name).get();
         assertTrue(result >= minIncl && result <= maxIncl);
     }

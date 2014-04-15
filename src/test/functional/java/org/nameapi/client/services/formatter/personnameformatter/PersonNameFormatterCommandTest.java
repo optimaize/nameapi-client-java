@@ -2,7 +2,7 @@ package org.nameapi.client.services.formatter.personnameformatter;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
 import org.nameapi.client.services.formatter.FormatterProperties;
@@ -23,7 +23,7 @@ public class PersonNameFormatterCommandTest extends AbstractTest {
     @Test
     public void testCall() throws Exception {
         PersonNameFormatterCommand command = new PersonNameFormatterCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
 
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("petra müller")).build();
         FormatterProperties properties = new FormatterPropertiesBuilder().build();

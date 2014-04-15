@@ -3,7 +3,7 @@ package org.nameapi.client.services.email.disposableemailaddressdetector;
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
 import crema.lang.Maybe;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.testng.annotations.Test;
 
@@ -19,7 +19,7 @@ public class DisposableEmailAddressDetectorCommandTest {
     @Test
     public void testCall() throws Exception {
         DisposableEmailAddressDetectorCommand command = new DisposableEmailAddressDetectorCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
-        assertEquals(executor.execute(command, mode, "blahblah@10minutemail.com").get(), Maybe.YES);
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        assertEquals(executor.execute(command, mode, "blahblah@10minutemail.com").get().getDisposable(), Maybe.YES);
     }
 }

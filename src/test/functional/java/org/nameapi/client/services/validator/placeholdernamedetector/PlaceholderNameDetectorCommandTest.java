@@ -2,7 +2,7 @@ package org.nameapi.client.services.validator.placeholdernamedetector;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
 import org.nameapi.ontology.input.entities.person.NaturalInputPerson;
@@ -23,7 +23,7 @@ public class PlaceholderNameDetectorCommandTest extends AbstractTest {
     @Test(dataProvider="people")
     public void people(String gn, String sn, int minIncl, int maxIncl, FakeType fakeType) throws Exception {
         PlaceholderNameDetectorCommand command = new PlaceholderNameDetectorCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName(gn, sn)).build();
         PlaceholderNameResult result = executor.execute(command, mode, person).get();
         int points = result.getPoints();

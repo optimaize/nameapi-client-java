@@ -5,7 +5,7 @@ import com.optimaize.command4j.Mode;
 import com.optimaize.soapworks.client.exception.AccessDeniedServiceException;
 import com.optimaize.soapworks.client.exception.InternalServiceException;
 import com.optimaize.soapworks.client.exception.InvalidInputServiceException;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.testng.annotations.Test;
 
@@ -43,7 +43,7 @@ public class ExceptionThrowerCommandTest {
 
     private void execute(ExceptionType type) throws Exception {
         ExceptionThrowerCommand command = new ExceptionThrowerCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         executor.execute(command, mode, type).get();
     }
 }

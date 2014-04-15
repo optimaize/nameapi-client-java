@@ -2,7 +2,7 @@ package org.nameapi.client.services.validator.randomtyping.personrandomtypingdet
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
 import org.nameapi.ontology.input.entities.person.NaturalInputPerson;
@@ -21,7 +21,7 @@ public class PersonRandomTypingDetectorCommandTest extends AbstractTest {
     @Test(dataProvider="testSome")
     public void testSome(String gn, String sn, int minIncl, int maxIncl) throws Exception {
         PersonRandomTypingDetectorCommand command = new PersonRandomTypingDetectorCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName(gn, sn)).build();
         Integer result = executor.execute(command, mode, person).get();
         assertTrue(result >= minIncl && result <= maxIncl);

@@ -2,7 +2,7 @@ package org.nameapi.client.services.nameparser.syntax;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.nameparser.NameParserResult;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ public class SyntaxBasedNameParserCommandTest {
 
     @Test
     public void testCall() throws Exception {
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         List<NameParserRule> rules = makeRules();
         SyntaxBasedNameParserCommand command = new SyntaxBasedNameParserCommand();
         NameParserArgument nameparserArgument = new NameParserArgument("John Doe", rules);

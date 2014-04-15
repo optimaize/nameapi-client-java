@@ -3,7 +3,7 @@ package org.nameapi.client.services.genderizer.persongenderizer;
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
 import com.optimaize.soapworks.client.exception.InvalidInputServiceException;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
 import org.nameapi.ontology.input.entities.address.StandardAddressBuilder;
@@ -26,7 +26,7 @@ public class PersonGenderizerCommandTest extends AbstractTest {
     @Test
     public void testCall() throws Exception {
         PersonGenderizerCommand command = new PersonGenderizerCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("Petra Müller")).build();
         assertEquals(executor.execute(command, mode, person).get().getGender(), ComputedPersonGender.FEMALE);
     }
@@ -34,7 +34,7 @@ public class PersonGenderizerCommandTest extends AbstractTest {
     @Test
     public void testCall2() throws Exception {
         PersonGenderizerCommand command = new PersonGenderizerCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("John", "Doe"))
                 //TODO .addTitle("Dr.")
                 .age(AgeInfoFactory.forYear(1950))
@@ -58,7 +58,7 @@ public class PersonGenderizerCommandTest extends AbstractTest {
     @Test
     public void testCall3() throws Exception {
         PersonGenderizerCommand command = new PersonGenderizerCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("John", "")).build();
         assertEquals(executor.execute(command, mode, person).get().getGender(), ComputedPersonGender.MALE);
     }
@@ -69,7 +69,7 @@ public class PersonGenderizerCommandTest extends AbstractTest {
     @Test(expectedExceptions = InvalidInputServiceException.class)
     public void testCall_ex() throws Exception {
         PersonGenderizerCommand command = new PersonGenderizerCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("John", "Doe"))
                 .gender(StoragePersonGender.MALE)
         .build();

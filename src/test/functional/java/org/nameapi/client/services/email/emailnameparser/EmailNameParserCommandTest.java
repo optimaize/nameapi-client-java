@@ -2,7 +2,7 @@ package org.nameapi.client.services.email.emailnameparser;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.testng.annotations.Test;
 
@@ -17,7 +17,7 @@ public class EmailNameParserCommandTest {
     @Test
     public void testCall() throws Exception {
         EmailNameParserCommand command = new EmailNameParserCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         EmailNameParserResult result = executor.execute(command, mode, "john.doe@gmail.com").get();
         assertEquals(result.getResultType(), EmailAddressParsingResultType.PERSON_NAME);
         assertEquals(result.getBestNameMatch().get().getGivenNames().get(0).getName(), "john");

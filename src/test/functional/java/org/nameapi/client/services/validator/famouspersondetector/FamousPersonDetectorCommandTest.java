@@ -3,7 +3,7 @@ package org.nameapi.client.services.validator.famouspersondetector;
 import com.google.common.base.Optional;
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import org.nameapi.client.services.NameApiModeFactory;
+import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
 import org.nameapi.ontology.input.entities.person.NaturalInputPerson;
@@ -24,7 +24,7 @@ public class FamousPersonDetectorCommandTest extends AbstractTest {
     @Test(dataProvider="people")
     public void people(String gn, String sn, Integer minIncl, Integer maxIncl) throws Exception {
         FamousPersonDetectorCommand command = new FamousPersonDetectorCommand();
-        Mode mode = NameApiModeFactory.functionalTest();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName(gn, sn)).build();
         Optional<FamousPersonResult> oResult = executor.execute(command, mode, person);
         if (minIncl==null && maxIncl==null) {
