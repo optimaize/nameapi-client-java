@@ -18,7 +18,7 @@ public class PingerCommandTest {
     public void testCall() throws Exception {
         PingerCommand command = new PingerCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<1; i++) {
             assertEquals(executor.execute(command, mode, null).get().getPong(), "pong");
         }
     }
