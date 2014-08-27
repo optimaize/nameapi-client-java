@@ -13,6 +13,8 @@ import org.nameapi.ontology.input.context.Priority;
  */
 public class FunctionalTestsNameApiModeFactory extends NameApiModeFactory {
 
+    //Developer: set your api key here. It looks something like this:
+    //private static final String API_KEY = "32d21gc5071d7463ef6064c07ea98cb2-user1";
     private static final String API_KEY = null;
 
     private static final Mode unitTestMode = minimal(makeContext())
