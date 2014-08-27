@@ -133,7 +133,7 @@ This service takes 2 people as input:
 ```java
 PersonMatcherCommand command = new PersonMatcherCommand();
 NaturalInputPerson person1 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("John F. Kennedy").build() ).build();
-NaturalInputPerson person2 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("Jake Kennedy").build() ).build();
+NaturalInputPerson person2 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("Jack Kennedy").build() ).build();
 PersonMatcherArgument argument = new PersonMatcherArgument(person1, person2);
 PersonMatcherResult result = executor.execute(command, mode, argument).get();
 ```
