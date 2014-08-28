@@ -9,7 +9,7 @@ import com.optimaize.soapworks.client.exensions.exceptiontranslation.SoapFaultEx
 import com.optimaize.soapworks.common.host.Host;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.commonwsdl.Conversions;
-import org.nameapi.ontology.input.context.Context;
+import org.nameapi.ontology4.input.context.Context;
 
 /**
  * Provides Mode instances that contain the minimum.

@@ -4,9 +4,9 @@ import com.optimaize.command4j.Mode;
 import com.optimaize.command4j.ext.extensions.logging.stdoutlogging.StdoutLoggingExtension;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.lib.NameApiModeFactory;
-import org.nameapi.ontology.input.context.Context;
-import org.nameapi.ontology.input.context.ContextBuilder;
-import org.nameapi.ontology.input.context.Priority;
+import org.nameapi.ontology4.input.context.Context;
+import org.nameapi.ontology4.input.context.ContextBuilder;
+import org.nameapi.ontology4.input.context.Priority;
 
 /**
  * @author Fabian Kessler
