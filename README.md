@@ -171,3 +171,9 @@ DisposableEmailAddressDetectorCommand command = new DisposableEmailAddressDetect
 DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com");
 ```
 
+
+## Development Setup for this Project
+
+When you check out the project, make sure your IDE recognizes the "lib" folder with the ontology jar. If not automatic, then in IntelliJ IDEA right click the lib folder and select "Add as Library...".
+This dependency is currently not available from Maven Central. So it was the most convenient way of including the code.
+
