@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.nameapi.ontology</groupId>
+    <artifactId>nameapi-ontology4</artifactId>
+    <name>nameapi-ontology4</name>
+    <version>4.2-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <url>http://www.nameapi.org</url>
+    <description>
+        Contains the domain classes that are used as input to the NameAPI server.
+
+        These are the same that the Java web service client library uses.
+        That's exactly the reason why these are in a separate project; so that they can
+        be shared easily, and can be included as a separate dependency in other projects.
+
+        See overview.html
+    </description>
+    <organization>
+        <name>Optimaize GmbH, Switzerland</name>
+        <url>http://www.optimaize.com/</url>
+    </organization>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <repo-base-url>http://maven.nameprofiler.com:8088</repo-base-url>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>optimaize-release</id>
+            <url>${repo-base-url}/artifactory/libs-release-local</url>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>optimaize-snapshot</id>
+            <url>${repo-base-url}/artifactory/libs-snapshot-local</url>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>optimaize-release</id>
+            <name>maven.nameprofiler.com-releases</name>
+            <url>${repo-base-url}/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>optimaize-snapshot</id>
+            <name>maven.nameprofiler.com-snapshots</name>
+            <url>${repo-base-url}/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <!--<finalName>nameapi-ontology4-4.0-SNAPSHOT</finalName>-->
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <doctitle>NameAPI: ${project.name} ${project.version} API</doctitle>
+                    <finalName>nameapi-ontology-${project.version}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>annotations</artifactId>
+            <!-- updated on 2013-07-23 -->
+            <version>12.0</version>
+        </dependency>
+
+        <!-- this would be useful, but we don't want the burden of a dependency that is not in maven central.
+        so we just copied a handful of classes to here. -->
+        <!--<dependency>-->
+            <!--<groupId>com.optimaize.crema</groupId>-->
+            <!--<artifactId>crema-lang</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <!-- updated on 2014-01-09. -->
+            <version>15.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <!-- updated on 2013-07-23. -->
+            <version>6.8.5</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>
