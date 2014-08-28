@@ -5,7 +5,7 @@
     <groupId>org.nameapi.client</groupId>
     <artifactId>nameapi-client</artifactId>
     <name>nameapi-client</name>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
 
     <url>https://github.com/optimaize/nameapi-client-java</url>
     <description>
@@ -34,7 +34,7 @@
         <connection>scm:git:git://github.com/optimaize/nameapi-client-java.git</connection>
         <developerConnection>scm:git:git@github.com:optimaize/nameapi-client-java.git</developerConnection>
         <url>http://github.com/optimaize/nameapi-client-java</url>
-        <tag>nameapi-client-0.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
