@@ -4,7 +4,7 @@ package org.nameapi.client.services.nameparser.fieldnameparser;
 import crema.annotation.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.nameparser.fieldnameparser.wsdl.SoapTerm;
-import org.nameapi.ontology.output.entities.person.name.Term;
+import org.nameapi.ontology4.output.entities.person.name.Term;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

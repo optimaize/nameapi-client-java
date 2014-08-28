@@ -8,8 +8,8 @@ import org.nameapi.client.services.AbstractTest;
 import org.nameapi.client.services.formatter.FormatterProperties;
 import org.nameapi.client.services.formatter.FormatterPropertiesBuilder;
 import org.nameapi.client.services.formatter.FormatterResult;
-import org.nameapi.ontology.input.entities.person.NaturalInputPerson;
-import org.nameapi.ontology.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology4.input.entities.person.NaturalInputPerson;
+import org.nameapi.ontology4.input.entities.person.NaturalInputPersonBuilder;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

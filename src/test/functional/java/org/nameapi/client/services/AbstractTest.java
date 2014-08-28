@@ -1,9 +1,9 @@
 package org.nameapi.client.services;
 
 import org.jetbrains.annotations.NotNull;
-import org.nameapi.ontology.input.entities.person.name.InputPersonName;
-import org.nameapi.ontology.input.entities.person.name.builder.NameBuilders;
-import org.nameapi.ontology.input.entities.person.name.builder.WesternInputPersonNameBuilder;
+import org.nameapi.ontology4.input.entities.person.name.InputPersonName;
+import org.nameapi.ontology4.input.entities.person.name.builder.NameBuilders;
+import org.nameapi.ontology4.input.entities.person.name.builder.WesternInputPersonNameBuilder;
 
 /**
  * @author Fabian Kessler

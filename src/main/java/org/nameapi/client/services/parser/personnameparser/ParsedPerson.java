@@ -1,7 +1,7 @@
 package org.nameapi.client.services.parser.personnameparser;
 
-import org.nameapi.ontology.input.entities.person.PersonType;
-import org.nameapi.ontology.output.entities.person.name.OutputPersonName;
+import org.nameapi.ontology4.input.entities.person.PersonType;
+import org.nameapi.ontology4.output.entities.person.name.OutputPersonName;
 
 import java.util.List;
 

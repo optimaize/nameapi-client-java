@@ -1,8 +1,8 @@
 
 package org.nameapi.client.commonwsdl.person;
 
-import org.nameapi.ontology.input.entities.person.MaritalStatus;
-import org.nameapi.ontology.input.entities.person.gender.StoragePersonGender;
+import org.nameapi.ontology4.input.entities.person.MaritalStatus;
+import org.nameapi.ontology4.input.entities.person.gender.StoragePersonGender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -189,7 +189,7 @@ public class SoapSimpleNaturalPerson {
      *
      * @return
      *     possible object is
-     *     {@link org.nameapi.ontology.input.entities.person.gender.StoragePersonGender }
+     *     {@link org.nameapi.ontology4.input.entities.person.gender.StoragePersonGender }
      *
      */
     public StoragePersonGender getGender() {
@@ -201,7 +201,7 @@ public class SoapSimpleNaturalPerson {
      *
      * @param value
      *     allowed object is
-     *     {@link org.nameapi.ontology.input.entities.person.gender.StoragePersonGender }
+     *     {@link org.nameapi.ontology4.input.entities.person.gender.StoragePersonGender }
      *
      */
     public void setGender(StoragePersonGender value) {
@@ -213,7 +213,7 @@ public class SoapSimpleNaturalPerson {
      *
      * @return
      *     possible object is
-     *     {@link org.nameapi.ontology.input.entities.person.MaritalStatus }
+     *     {@link org.nameapi.ontology4.input.entities.person.MaritalStatus }
      *
      */
     public MaritalStatus getMaritalStatus() {
@@ -225,7 +225,7 @@ public class SoapSimpleNaturalPerson {
      *
      * @param value
      *     allowed object is
-     *     {@link org.nameapi.ontology.input.entities.person.MaritalStatus }
+     *     {@link org.nameapi.ontology4.input.entities.person.MaritalStatus }
      *
      */
     public void setMaritalStatus(MaritalStatus value) {

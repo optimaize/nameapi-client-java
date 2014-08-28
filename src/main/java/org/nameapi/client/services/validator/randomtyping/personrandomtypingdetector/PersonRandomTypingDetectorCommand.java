@@ -8,7 +8,7 @@ import org.nameapi.client.commonwsdl.Conversions;
 import org.nameapi.client.services.NameApiBaseCommand;
 import org.nameapi.client.services.validator.randomtyping.personrandomtypingdetector.wsdl.SoapPersonRandomTypingDetector;
 import org.nameapi.client.services.validator.randomtyping.personrandomtypingdetector.wsdl.SoapPersonRandomTypingDetectorService;
-import org.nameapi.ontology.input.entities.person.InputPerson;
+import org.nameapi.ontology4.input.entities.person.InputPerson;
 
 import java.net.URL;
 import java.util.concurrent.Callable;

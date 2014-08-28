@@ -9,7 +9,7 @@ import org.nameapi.client.services.NameApiBaseCommand;
 import org.nameapi.client.services.validator.placeholdernamedetector.wsdl.SoapPlaceholderNameDetector;
 import org.nameapi.client.services.validator.placeholdernamedetector.wsdl.SoapPlaceholderNameDetectorService;
 import org.nameapi.client.services.validator.placeholdernamedetector.wsdl.SoapPlaceholderNameResult;
-import org.nameapi.ontology.input.entities.person.InputPerson;
+import org.nameapi.ontology4.input.entities.person.InputPerson;
 
 import java.net.URL;
 import java.util.concurrent.Callable;

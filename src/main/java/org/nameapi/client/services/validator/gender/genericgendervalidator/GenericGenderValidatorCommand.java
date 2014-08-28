@@ -8,7 +8,7 @@ import org.nameapi.client.services.NameApiBaseCommand;
 import org.nameapi.client.services.validator.gender.genericgendervalidator.wsdl.SoapGenderValidationResult;
 import org.nameapi.client.services.validator.gender.genericgendervalidator.wsdl.SoapGenericGenderValidator;
 import org.nameapi.client.services.validator.gender.genericgendervalidator.wsdl.SoapGenericGenderValidatorService;
-import org.nameapi.ontology.input.entities.person.InputPerson;
+import org.nameapi.ontology4.input.entities.person.InputPerson;
 
 import java.net.URL;
 import java.util.concurrent.Callable;

@@ -1,9 +1,9 @@
 
 package org.nameapi.client.commonwsdl.person;
 
-//import org.nameapi.ontology.input.entities.address.AddressUsage;
+//import org.nameapi.ontology4.input.entities.address.AddressUsage;
 
-import org.nameapi.ontology.input.entities.address.AddressUsage;
+import org.nameapi.ontology4.input.entities.address.AddressUsage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +89,7 @@ public class SoapAddressRelation {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link org.nameapi.ontology.input.entities.address.AddressUsage }
+     * {@link org.nameapi.ontology4.input.entities.address.AddressUsage }
      * 
      * 
      */

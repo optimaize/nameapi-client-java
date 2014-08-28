@@ -1,7 +1,7 @@
 
 package org.nameapi.client.services.genderizer.persongenderizer.wsdl;
 
-import org.nameapi.ontology.input.entities.person.gender.ComputedPersonGender;
+import org.nameapi.ontology4.input.entities.person.gender.ComputedPersonGender;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -62,7 +62,7 @@ public class SoapPersonGenderizerResult {
      * 
      * @return
      *     possible object is
-     *     {@link org.nameapi.ontology.input.entities.person.gender.ComputedPersonGender }
+     *     {@link org.nameapi.ontology4.input.entities.person.gender.ComputedPersonGender }
      *     
      */
     public ComputedPersonGender getGender() {
@@ -74,7 +74,7 @@ public class SoapPersonGenderizerResult {
      * 
      * @param value
      *     allowed object is
-     *     {@link org.nameapi.ontology.input.entities.person.gender.ComputedPersonGender }
+     *     {@link org.nameapi.ontology4.input.entities.person.gender.ComputedPersonGender }
      *     
      */
     public void setGender(ComputedPersonGender value) {

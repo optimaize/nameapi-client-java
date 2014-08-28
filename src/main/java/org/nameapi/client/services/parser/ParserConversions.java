@@ -8,10 +8,10 @@ import org.nameapi.client.services.parser.personnameparser.wsdl.SoapOutputPerson
 import org.nameapi.client.services.parser.personnameparser.wsdl.SoapParsedPerson;
 import org.nameapi.client.services.parser.personnameparser.wsdl.SoapParsedPersonMatch;
 import org.nameapi.client.services.parser.personnameparser.wsdl.SoapPersonNameParserResult;
-import org.nameapi.ontology.output.entities.person.name.OutputPersonName;
-import org.nameapi.ontology.output.entities.person.name.OutputPersonNameImpl;
-import org.nameapi.ontology.output.entities.person.name.Term;
-import org.nameapi.ontology.output.entities.person.name.TermType;
+import org.nameapi.ontology4.output.entities.person.name.OutputPersonName;
+import org.nameapi.ontology4.output.entities.person.name.OutputPersonNameImpl;
+import org.nameapi.ontology4.output.entities.person.name.Term;
+import org.nameapi.ontology4.output.entities.person.name.TermType;
 
 import java.util.ArrayList;
 import java.util.List;

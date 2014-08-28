@@ -1,7 +1,7 @@
 package org.nameapi.client.services.matcher.personmatcher;
 
 import org.jetbrains.annotations.NotNull;
-import org.nameapi.ontology.input.entities.person.InputPerson;
+import org.nameapi.ontology4.input.entities.person.InputPerson;
 
 /**
  */

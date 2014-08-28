@@ -9,7 +9,7 @@ import org.nameapi.client.services.genderizer.PersonGenderizerResult;
 import org.nameapi.client.services.genderizer.persongenderizer.wsdl.SoapPersonGenderizer;
 import org.nameapi.client.services.genderizer.persongenderizer.wsdl.SoapPersonGenderizerResult;
 import org.nameapi.client.services.genderizer.persongenderizer.wsdl.SoapPersonGenderizerService;
-import org.nameapi.ontology.input.entities.person.InputPerson;
+import org.nameapi.ontology4.input.entities.person.InputPerson;
 
 import java.net.URL;
 import java.util.concurrent.Callable;

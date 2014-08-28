@@ -5,10 +5,10 @@ import com.optimaize.command4j.Mode;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
-import org.nameapi.ontology.input.entities.person.NaturalInputPerson;
-import org.nameapi.ontology.input.entities.person.NaturalInputPersonBuilder;
-import org.nameapi.ontology.output.entities.person.name.OutputPersonName;
-import org.nameapi.ontology.output.entities.person.name.TermType;
+import org.nameapi.ontology4.input.entities.person.NaturalInputPerson;
+import org.nameapi.ontology4.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology4.output.entities.person.name.OutputPersonName;
+import org.nameapi.ontology4.output.entities.person.name.TermType;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

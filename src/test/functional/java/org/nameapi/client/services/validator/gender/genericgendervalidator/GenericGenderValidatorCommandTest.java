@@ -6,9 +6,9 @@ import com.optimaize.soapworks.client.exception.InvalidInputServiceException;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
-import org.nameapi.ontology.input.entities.person.NaturalInputPerson;
-import org.nameapi.ontology.input.entities.person.NaturalInputPersonBuilder;
-import org.nameapi.ontology.input.entities.person.gender.StoragePersonGender;
+import org.nameapi.ontology4.input.entities.person.NaturalInputPerson;
+import org.nameapi.ontology4.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology4.input.entities.person.gender.StoragePersonGender;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

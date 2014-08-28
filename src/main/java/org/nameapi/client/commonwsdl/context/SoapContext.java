@@ -1,8 +1,8 @@
 
 package org.nameapi.client.commonwsdl.context;
 
-import org.nameapi.ontology.input.context.Priority;
-import org.nameapi.ontology.input.context.TextCase;
+import org.nameapi.ontology4.input.context.Priority;
+import org.nameapi.ontology4.input.context.TextCase;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -126,7 +126,7 @@ public class SoapContext {
      *
      * @return
      *     possible object is
-     *     {@link org.nameapi.ontology.input.context.Priority }
+     *     {@link org.nameapi.ontology4.input.context.Priority }
      *
      */
     public Priority getPriority() {
@@ -138,7 +138,7 @@ public class SoapContext {
      *
      * @param value
      *     allowed object is
-     *     {@link org.nameapi.ontology.input.context.Priority }
+     *     {@link org.nameapi.ontology4.input.context.Priority }
      *
      */
     public void setPriority(Priority value) {
@@ -174,7 +174,7 @@ public class SoapContext {
      *
      * @return
      *     possible object is
-     *     {@link org.nameapi.ontology.input.context.TextCase }
+     *     {@link org.nameapi.ontology4.input.context.TextCase }
      *
      */
     public TextCase getTextCase() {
@@ -186,7 +186,7 @@ public class SoapContext {
      *
      * @param value
      *     allowed object is
-     *     {@link org.nameapi.ontology.input.context.TextCase }
+     *     {@link org.nameapi.ontology4.input.context.TextCase }
      *
      */
     public void setTextCase(TextCase value) {

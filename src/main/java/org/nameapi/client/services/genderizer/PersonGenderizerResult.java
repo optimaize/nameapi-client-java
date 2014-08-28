@@ -3,7 +3,7 @@ package org.nameapi.client.services.genderizer;
 import com.google.common.base.Optional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.nameapi.ontology.input.entities.person.gender.ComputedPersonGender;
+import org.nameapi.ontology4.input.entities.person.gender.ComputedPersonGender;
 
 /**
  */

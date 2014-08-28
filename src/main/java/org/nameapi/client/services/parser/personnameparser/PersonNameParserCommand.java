@@ -9,7 +9,7 @@ import org.nameapi.client.services.parser.ParserConversions;
 import org.nameapi.client.services.parser.personnameparser.wsdl.SoapPersonNameParser;
 import org.nameapi.client.services.parser.personnameparser.wsdl.SoapPersonNameParserResult;
 import org.nameapi.client.services.parser.personnameparser.wsdl.SoapPersonNameParserService;
-import org.nameapi.ontology.input.entities.person.InputPerson;
+import org.nameapi.ontology4.input.entities.person.InputPerson;
 
 import java.net.URL;
 import java.util.concurrent.Callable;

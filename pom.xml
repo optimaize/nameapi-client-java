@@ -42,7 +42,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
-        <ontology.version>4.0-SNAPSHOT</ontology.version>
+        <soapworks.version>0.1-SNAPSHOT</soapworks.version>
+        <ontology.version>4.2-SNAPSHOT</ontology.version>
     </properties>
 
     <build>
@@ -180,12 +181,38 @@
         <dependency>
             <groupId>com.optimaize.soapworks.client</groupId>
             <artifactId>soapworks-client</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>${soapworks.version}</version>
+        </dependency>
+
+        <!-- for internal development we use this dependency,
+        it comes from our internal-only artifactory. -->
+        <!--<dependency>-->
+            <!--<groupId>org.nameapi.ontology</groupId>-->
+            <!--<artifactId>nameapi-ontology4</artifactId>-->
+            <!--<version>${ontology.version}</version>-->
+        <!--</dependency>-->
+        <!-- for distribution we put the nameapi-ontology jar
+        into the lib folder, and require these 2 maven dependencies
+        that are not packaged in the jar. these are in maven central.
+        this allows a user to set an exclude rule and use his newer
+        version, eg a newer guava version. -->
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>annotations</artifactId>
+            <version>12.0</version>
         </dependency>
         <dependency>
-            <groupId>org.nameapi.ontology</groupId>
-            <artifactId>nameapi-ontology</artifactId>
-            <version>${ontology.version}</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>15.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.5</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>

@@ -1,7 +1,7 @@
 
 package org.nameapi.client.services.parser.personnameparser.wsdl;
 
-import org.nameapi.ontology.input.entities.person.PersonType;
+import org.nameapi.ontology4.input.entities.person.PersonType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class SoapParsedPerson {
      * 
      * @return
      *     possible object is
-     *     {@link org.nameapi.ontology.input.entities.person.PersonType }
+     *     {@link org.nameapi.ontology4.input.entities.person.PersonType }
      *     
      */
     public PersonType getPersonType() {
@@ -88,7 +88,7 @@ public class SoapParsedPerson {
      * 
      * @param value
      *     allowed object is
-     *     {@link org.nameapi.ontology.input.entities.person.PersonType }
+     *     {@link org.nameapi.ontology4.input.entities.person.PersonType }
      *     
      */
     public void setPersonType(PersonType value) {

@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.commonwsdl.Conversions;
 import org.nameapi.client.services.NameApiBaseCommand;
 import org.nameapi.client.services.nameparser.fieldnameparser.wsdl.*;
-import org.nameapi.ontology.input.entities.person.name.NameField;
-import org.nameapi.ontology.output.entities.person.name.Term;
-import org.nameapi.ontology.output.entities.person.name.TermType;
+import org.nameapi.ontology4.input.entities.person.name.NameField;
+import org.nameapi.ontology4.output.entities.person.name.Term;
+import org.nameapi.ontology4.output.entities.person.name.TermType;
 
 import java.net.URL;
 import java.util.ArrayList;
