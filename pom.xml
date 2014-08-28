@@ -43,7 +43,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <soapworks.version>0.2</soapworks.version>
-        <ontology.version>4.2-SNAPSHOT</ontology.version>
+        <ontology.version>4.2</ontology.version>
     </properties>
 
     <build>
@@ -187,6 +187,9 @@
             <id>in-project</id>
             <name>In Project Repo</name>
             <url>file://${project.basedir}/lib</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -200,7 +203,7 @@
         <!-- this dependency is in our internal artifactory repository.
         and maven finds it through the repository definition in the lib folder. -->
         <dependency>
-            <groupId>org.nameapi.ontology</groupId>
+            <groupId>ontology</groupId> <!-- with group id "org.nameapi.ontology" it does not work -->
             <artifactId>nameapi-ontology4</artifactId>
             <version>${ontology.version}</version>
         </dependency>
