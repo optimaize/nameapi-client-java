@@ -180,7 +180,8 @@
     <!--
      This lets Maven see the jars in the lib folder when building.
      Once the Ontology jar is in Maven Central, we won't need this anymore.
-     See http://stackoverflow.com/questions/5692256/maven-best-way-of-linking-custom-external-jar-to-my-project -->
+     See for an overview http://stackoverflow.com/questions/5692256/maven-best-way-of-linking-custom-external-jar-to-my-project
+     and for detail here http://charlie.cu.cc/2012/06/how-add-external-libraries-maven/ -->
     <repositories>
         <repository>
             <id>in-project</id>
