@@ -177,6 +177,18 @@
         </profile>
     </profiles>
 
+    <!--
+     This lets Maven see the jars in the lib folder when building.
+     Once the Ontology jar is in Maven Central, we won't need this anymore.
+     See http://stackoverflow.com/questions/5692256/maven-best-way-of-linking-custom-external-jar-to-my-project -->
+    <repositories>
+        <repository>
+            <id>in-project</id>
+            <name>In Project Repo</name>
+            <url>file://${project.basedir}/lib</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.optimaize.soapworks.client</groupId>
@@ -184,18 +196,14 @@
             <version>${soapworks.version}</version>
         </dependency>
 
-        <!-- for internal development we use this dependency,
-        it comes from our internal-only artifactory. -->
-        <!--<dependency>-->
-            <!--<groupId>org.nameapi.ontology</groupId>-->
-            <!--<artifactId>nameapi-ontology4</artifactId>-->
-            <!--<version>${ontology.version}</version>-->
-        <!--</dependency>-->
-        <!-- for distribution we put the nameapi-ontology jar
-        into the lib folder, and require these 2 maven dependencies
-        that are not packaged in the jar. these are in maven central.
-        this allows a user to set an exclude rule and use his newer
-        version, eg a newer guava version. -->
+        <!-- this dependency is in our internal artifactory repository.
+        and maven finds it through the repository definition in the lib folder. -->
+        <dependency>
+            <groupId>org.nameapi.ontology</groupId>
+            <artifactId>nameapi-ontology4</artifactId>
+            <version>${ontology.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.intellij</groupId>
             <artifactId>annotations</artifactId>
