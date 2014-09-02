@@ -13,12 +13,12 @@ This library requires at least Java 7.
 
 ## Library setup
 
-Using maven:
+Using Maven:
 
     <dependency>
       <groupId>org.nameapi.client</groupId>
       <artifactId>nameapi-client</artifactId>
-      <version>0.1-SNAPSHOT</version>
+      <version>0.3</version>
     </dependency>
 
 Or you can download the jar, or check out the source code from this GitHub project.
