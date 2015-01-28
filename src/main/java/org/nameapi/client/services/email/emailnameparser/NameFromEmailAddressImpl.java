@@ -5,16 +5,17 @@ import crema.annotation.Immutable;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Visible only because emailnameparser2 needs to instantiate it. Don't use this, use the interface!
  */
 @Immutable
-class NameFromEmailAddressImpl implements NameFromEmailAddress {
+public class NameFromEmailAddressImpl implements NameFromEmailAddress {
 
     @NotNull
     private String name;
     @NotNull
     private EmailAddressNameType nameType;
 
-    NameFromEmailAddressImpl(@NotNull String name, @NotNull EmailAddressNameType nameType) {
+    public NameFromEmailAddressImpl(@NotNull String name, @NotNull EmailAddressNameType nameType) {
         this.name = name;
         this.nameType = nameType;
     }

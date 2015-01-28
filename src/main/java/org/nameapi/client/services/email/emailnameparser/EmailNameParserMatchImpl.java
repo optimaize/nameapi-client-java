@@ -7,9 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Visible only because emailnameparser2 needs to instantiate it. Don't use this, use the interface!
  */
 @Immutable
-final class EmailNameParserMatchImpl implements EmailNameParserMatch {
+public final class EmailNameParserMatchImpl implements EmailNameParserMatch {
 
     @NotNull
     private final List<NameFromEmailAddress> givenNames;
@@ -18,7 +19,7 @@ final class EmailNameParserMatchImpl implements EmailNameParserMatch {
 
     private final double confidence;
 
-    EmailNameParserMatchImpl(@NotNull List<NameFromEmailAddress> givenNames,
+    public EmailNameParserMatchImpl(@NotNull List<NameFromEmailAddress> givenNames,
                              @NotNull List<NameFromEmailAddress> surnames,
                              double confidence) {
         this.givenNames = Collections.unmodifiableList(givenNames);

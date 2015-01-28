@@ -1,10 +1,14 @@
-package org.nameapi.client.services.email.emailnameparser;
+package org.nameapi.client.services.email.emailnameparser2;
 
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.email.emailnameparser.wsdl.*;
+import org.nameapi.client.services.email.emailnameparser.EmailNameParserMatch;
+import org.nameapi.client.services.email.emailnameparser.EmailNameParserMatchImpl;
+import org.nameapi.client.services.email.emailnameparser.NameFromEmailAddress;
+import org.nameapi.client.services.email.emailnameparser.NameFromEmailAddressImpl;
+import org.nameapi.client.services.email.emailnameparser2.wsdl.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -32,27 +36,28 @@ import java.util.concurrent.Callable;
  *
  * <p>Names are not formatted to correct case, they are left the way they appeared in the input.</p>
  *
- * @deprecated use the EmailNameParser2Command
+ * <p>Difference to the older EmailNameParserCommand:
+ * The enum EmailAddressParsingResultType2 uses FUNCTIONAL instead of DEPARTMENT and TECHNICAL because the two can hardly be told apart.
+ * </p>
  */
-@Deprecated
-public class EmailNameParserCommand
-        extends NameApiBaseCommand<SoapEmailNameParser, String, EmailNameParserResult>
+public class EmailNameParser2Command
+        extends NameApiBaseCommand<SoapEmailNameParser2, String, EmailNameParserResult>
 {
 
-    private static final String servicePath = "/email/emailnameparser";
+    private static final String servicePath = "/email/emailnameparser2";
 
-    public EmailNameParserCommand() {
-        super(SoapEmailNameParser.class);
+    public EmailNameParser2Command() {
+        super(SoapEmailNameParser2.class);
     }
 
     @Override @NotNull
     public EmailNameParserResult call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
-        SoapEmailNameParserResult soapResult = getPort(ec).parse(getContext(ec), arg.get());
+        SoapEmailNameParserResult2 soapResult = getPort(ec).parse(getContext(ec), arg.get());
         return convert(soapResult);
     }
 
     @NotNull
-    private EmailNameParserResult convert(@NotNull SoapEmailNameParserResult soapResult) {
+    private EmailNameParserResult convert(@NotNull SoapEmailNameParserResult2 soapResult) {
         List<EmailNameParserMatch> matches = new ArrayList<>();
         for (SoapEmailNameParserMatch soapMatch : soapResult.getMatches()) {
             matches.add( convert(soapMatch) );
@@ -81,12 +86,12 @@ public class EmailNameParserCommand
     }
 
     @NotNull @Override
-    protected Callable<SoapEmailNameParser> createPort(@NotNull final ExecutionContext ec) {
-        return new Callable<SoapEmailNameParser>() {
+    protected Callable<SoapEmailNameParser2> createPort(@NotNull final ExecutionContext ec) {
+        return new Callable<SoapEmailNameParser2>() {
             @Override
-            public SoapEmailNameParser call() throws Exception {
+            public SoapEmailNameParser2 call() throws Exception {
                 URL url = makeUrl(ec, servicePath);
-                return new SoapEmailNameParserService(url).getSoapEmailNameParserPort();
+                return new SoapEmailNameParser2Service(url).getSoapEmailNameParser2Port();
             }
         };
     }

@@ -1,21 +1,19 @@
-package org.nameapi.client.services.email.emailnameparser;
 
+package org.nameapi.client.services.email.emailnameparser2;
 
 /**
- * Belongs to {@link EmailNameParserResult}, tells what was detected.
+ * Belongs to {@link org.nameapi.client.services.email.emailnameparser2.EmailNameParserResult}, tells what was detected.
+ *
+ * Difference to the EmailAddressParsingResultType:
+ * The enum uses FUNCTIONAL instead of DEPARTMENT and TECHNICAL because the two can hardly be told apart.
  */
-public enum EmailAddressParsingResultType {
+public enum EmailAddressParsingResultType2 {
 
     /**
-     * The email address belongs to a department, such as accounting@example.com.
+     * The email address belongs to a department (eg accounting@example.com) or is
+     * technical (eg hostmaster@example.com).
      */
-    DEPARTMENT,
-
-    /**
-     * It is a technical email address for the domain, such as hostmaster@example.com.
-     *
-     */
-    TECHNICAL,
+    FUNCTIONAL,
 
     /**
      * The email address contains a person's initials such as ab@example.com.
