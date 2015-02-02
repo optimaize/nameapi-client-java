@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  */
-public interface EmailNameParserResult {
+public interface EmailNameParser2Result {
 
     @NotNull
     EmailAddressParsingResultType2 getResultType();

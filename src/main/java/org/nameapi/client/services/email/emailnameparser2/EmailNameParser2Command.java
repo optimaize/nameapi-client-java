@@ -41,7 +41,7 @@ import java.util.concurrent.Callable;
  * </p>
  */
 public class EmailNameParser2Command
-        extends NameApiBaseCommand<SoapEmailNameParser2, String, EmailNameParserResult>
+        extends NameApiBaseCommand<SoapEmailNameParser2, String, EmailNameParser2Result>
 {
 
     private static final String servicePath = "/email/emailnameparser2";
@@ -51,18 +51,18 @@ public class EmailNameParser2Command
     }
 
     @Override @NotNull
-    public EmailNameParserResult call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
+    public EmailNameParser2Result call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
         SoapEmailNameParserResult2 soapResult = getPort(ec).parse(getContext(ec), arg.get());
         return convert(soapResult);
     }
 
     @NotNull
-    private EmailNameParserResult convert(@NotNull SoapEmailNameParserResult2 soapResult) {
+    private EmailNameParser2Result convert(@NotNull SoapEmailNameParserResult2 soapResult) {
         List<EmailNameParserMatch> matches = new ArrayList<>();
         for (SoapEmailNameParserMatch soapMatch : soapResult.getMatches()) {
             matches.add( convert(soapMatch) );
         }
-        return new EmailNameParserResultImpl(soapResult.getResultType(), matches);
+        return new EmailNameParser2ResultImpl(soapResult.getResultType(), matches);
     }
     @NotNull
     private EmailNameParserMatch convert(@NotNull SoapEmailNameParserMatch soapMatch) {

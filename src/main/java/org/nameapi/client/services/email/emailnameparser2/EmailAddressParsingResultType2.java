@@ -2,7 +2,7 @@
 package org.nameapi.client.services.email.emailnameparser2;
 
 /**
- * Belongs to {@link org.nameapi.client.services.email.emailnameparser2.EmailNameParserResult}, tells what was detected.
+ * Belongs to {@link EmailNameParser2Result}, tells what was detected.
  *
  * Difference to the EmailAddressParsingResultType:
  * The enum uses FUNCTIONAL instead of DEPARTMENT and TECHNICAL because the two can hardly be told apart.

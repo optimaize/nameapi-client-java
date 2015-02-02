@@ -3,7 +3,6 @@ package org.nameapi.client.services.email.emailnameparser2;
 import com.google.common.base.Optional;
 import crema.annotation.Immutable;
 import org.jetbrains.annotations.NotNull;
-import org.nameapi.client.services.email.emailnameparser.EmailAddressParsingResultType;
 import org.nameapi.client.services.email.emailnameparser.EmailNameParserMatch;
 
 import java.util.Collections;
@@ -12,14 +11,14 @@ import java.util.List;
 /**
  */
 @Immutable
-class EmailNameParserResultImpl implements EmailNameParserResult {
+class EmailNameParser2ResultImpl implements EmailNameParser2Result {
 
     @NotNull
     private final EmailAddressParsingResultType2 resultType;
     @NotNull
     private final List<EmailNameParserMatch> matches;
 
-    EmailNameParserResultImpl(@NotNull EmailAddressParsingResultType2 resultType, @NotNull List<EmailNameParserMatch> matches) {
+    EmailNameParser2ResultImpl(@NotNull EmailAddressParsingResultType2 resultType, @NotNull List<EmailNameParserMatch> matches) {
         this.resultType = resultType;
         this.matches    = Collections.unmodifiableList(matches);
     }
