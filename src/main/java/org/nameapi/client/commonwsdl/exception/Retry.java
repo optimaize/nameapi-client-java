@@ -39,4 +39,7 @@ public enum Retry {
         return valueOf(v);
     }
 
+    public static void assertSize(int expectedItems) {
+        assert values().length == expectedItems : "Update the code calling this with " + expectedItems + "!";
+    }
 }
