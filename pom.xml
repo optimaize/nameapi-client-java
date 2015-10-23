@@ -5,7 +5,7 @@
     <groupId>org.nameapi.client</groupId>
     <artifactId>nameapi-client</artifactId>
     <name>nameapi-client</name>
-    <version>0.4-SNAPSHOT</version>
+    <version>5.0-SNAPSHOT</version>
 
     <url>https://github.com/optimaize/nameapi-client-java</url>
     <description>
