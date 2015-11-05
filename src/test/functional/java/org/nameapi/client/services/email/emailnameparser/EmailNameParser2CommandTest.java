@@ -1,4 +1,4 @@
-package org.nameapi.client.services.email.emailnameparser2;
+package org.nameapi.client.services.email.emailnameparser;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;

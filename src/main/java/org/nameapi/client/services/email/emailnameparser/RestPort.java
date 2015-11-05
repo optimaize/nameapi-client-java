@@ -1,4 +1,4 @@
-package org.nameapi.client.services.email.emailnameparser2;
+package org.nameapi.client.services.email.emailnameparser;
 
 import com.optimaize.anythingworks.client.rest.http.HeaderParams;
 import com.optimaize.anythingworks.client.rest.http.QueryParams;

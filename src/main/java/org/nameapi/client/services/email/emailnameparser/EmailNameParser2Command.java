@@ -1,4 +1,4 @@
-package org.nameapi.client.services.email.emailnameparser2;
+package org.nameapi.client.services.email.emailnameparser;
 
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
