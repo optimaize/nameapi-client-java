@@ -33,14 +33,14 @@ import java.util.concurrent.Callable;
  * The enum EmailAddressParsingResultType2 uses FUNCTIONAL instead of DEPARTMENT and TECHNICAL because the two can hardly be told apart.
  * </p>
  */
-public class EmailNameParser2Command
+public class EmailNameParserCommand
         extends NameApiBaseCommand<RestPort, String, EmailNameParserResult>
 {
 
 
     private static final String SERVICE_PATH = "/email/emailnameparser2";
 
-    public EmailNameParser2Command() {
+    public EmailNameParserCommand() {
         super(RestPort.class);
     }
 

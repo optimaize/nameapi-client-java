@@ -12,13 +12,13 @@ import static org.testng.Assert.assertEquals;
 
 /**
  */
-public class EmailNameParser2CommandTest {
+public class EmailNameParserCommandTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
     @Test
     public void testParse_John_Doe() throws Exception {
-        EmailNameParser2Command command = new EmailNameParser2Command();
+        EmailNameParserCommand command = new EmailNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         EmailNameParserResult result = executor.execute(command, mode, "john.doe@gmail.com").get();
         assertEquals(result.getResultType(), EmailAddressParsingResultType.PERSON_NAME);
@@ -28,7 +28,7 @@ public class EmailNameParser2CommandTest {
 
     @Test
     public void testParse_webmaster() throws Exception {
-        EmailNameParser2Command command = new EmailNameParser2Command();
+        EmailNameParserCommand command = new EmailNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         EmailNameParserResult result = executor.execute(command, mode, "webmaster@example.com").get();
         assertEquals(result.getResultType(), EmailAddressParsingResultType.FUNCTIONAL);
