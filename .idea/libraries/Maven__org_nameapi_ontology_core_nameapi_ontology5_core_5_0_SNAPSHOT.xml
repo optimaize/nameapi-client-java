@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.nameapi.ontology.core:nameapi-ontology5-core:5.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/nameapi/ontology/core/nameapi-ontology5-core/5.0-SNAPSHOT/nameapi-ontology5-core-5.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/nameapi/ontology/core/nameapi-ontology5-core/5.0-SNAPSHOT/nameapi-ontology5-core-5.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/nameapi/ontology/core/nameapi-ontology5-core/5.0-SNAPSHOT/nameapi-ontology5-core-5.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

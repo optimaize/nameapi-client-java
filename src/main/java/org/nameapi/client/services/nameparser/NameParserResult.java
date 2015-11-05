@@ -2,10 +2,9 @@
 package org.nameapi.client.services.nameparser;
 
 import com.google.common.base.Optional;
-import crema.annotation.Immutable;
+import cremacopy.annotation.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.nameapi.client.services.nameparser.wsdl.SoapMatch;
 
 import java.util.List;
 
@@ -21,9 +20,9 @@ public class NameParserResult {
     private final List<Match> matches;
     private final int shortestItemCount;
 
-    public NameParserResult(@Nullable SoapMatch bestMatch, @NotNull List<SoapMatch> matches, int shortestItemCount) {
-        this.bestMatch = Optional.fromNullable(Conversion.convert(bestMatch));
-        this.matches = Conversion.convertMatches(matches);
+    public NameParserResult(@Nullable Match bestMatch, @NotNull List<Match> matches, int shortestItemCount) {
+        this.bestMatch = Optional.fromNullable(bestMatch);
+        this.matches = matches;
         this.shortestItemCount = shortestItemCount;
     }
 

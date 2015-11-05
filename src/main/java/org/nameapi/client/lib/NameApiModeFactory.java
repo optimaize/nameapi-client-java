@@ -1,16 +1,12 @@
 package org.nameapi.client.lib;
 
+import com.optimaize.anythingworks.client.common.Keys;
+import com.optimaize.anythingworks.client.rest.RestKeys;
+import com.optimaize.anythingworks.client.rest.RestPortUrlFactory;
+import com.optimaize.anythingworks.common.host.Host;
 import com.optimaize.command4j.Mode;
-import com.optimaize.command4j.ext.extensions.exception.exceptiontranslation.CombinedExceptionTranslator;
-import com.optimaize.command4j.ext.extensions.exception.exceptiontranslation.ExceptionTranslationExtension;
-import com.optimaize.soapworks.client.Keys;
-import com.optimaize.soapworks.client.PortUrlFactory;
-import com.optimaize.soapworks.client.exensions.exceptiontranslation.DefaultClientExceptionTranslator;
-import com.optimaize.soapworks.client.exensions.exceptiontranslation.SoapFaultExceptionTranslator;
-import com.optimaize.soapworks.common.host.Host;
 import org.jetbrains.annotations.NotNull;
-import org.nameapi.client.commonwsdl.Conversions;
-import org.nameapi.ontology4.input.context.Context;
+import org.nameapi.ontology5.input.context.Context;
 
 /**
  * Provides Mode instances that contain the minimum.
@@ -28,17 +24,17 @@ public class NameApiModeFactory {
      *
      * <p>Example: .with(StdoutLoggingExtension.enabled())</p>
      *
-     * @param context for example {@code new ContextBuilder().apiKey("your-api-key).priority(Priority.REALTIME).build()}
+     * @param apiKey Your personal api key from registering with us.
      * @param host for example {@code new Host("api.nameapi.org", 80)}
      * @param portUrlFactory for example {@code NameApiPortUrlFactory.versionLatestStable()}
      */
     @NotNull
-    public static Mode minimal(@NotNull Context context, @NotNull Host host, @NotNull PortUrlFactory portUrlFactory) {
+    public static Mode minimal(@NotNull String apiKey, @NotNull Host host, @NotNull RestPortUrlFactory portUrlFactory) {
         return Mode.create()
-                .with(Keys.PORT_URL_FACTORY, portUrlFactory)
-                .with(ExceptionTranslationExtension.TRANSLATOR, new CombinedExceptionTranslator(new DefaultClientExceptionTranslator(), new SoapFaultExceptionTranslator()))
+                .with(RestKeys.REST_PORT_URL_FACTORY, portUrlFactory)
+//                .with(ExceptionTranslationExtension.TRANSLATOR, new CombinedExceptionTranslator(new DefaultClientExceptionTranslator(), new SoapFaultExceptionTranslator()))
                 .with(Keys.HOST, host)
-                .with(NameApiKeys.CONTEXT, Conversions.convert(context));
+                .with(NameApiKeys.API_KEY, apiKey);
     }
 
     /**
@@ -47,7 +43,35 @@ public class NameApiModeFactory {
      * for port url: {@code NameApiPortUrlFactory.versionLatestStable()}
      */
     @NotNull
-    public static Mode minimal(@NotNull Context context) {
-        return minimal(context, DEFAULT_HOST, DEFAULT_PORT_FACTORY);
+    public static Mode minimal(@NotNull String apiKey) {
+        return minimal(apiKey, DEFAULT_HOST, DEFAULT_PORT_FACTORY);
     }
+
+
+    /**
+     * You can take this and extend for your setup if you need more.
+     *
+     * <p>Example: .with(StdoutLoggingExtension.enabled())</p>
+     *
+     * @param apiKey Your personal api key from registering with us.
+     * @param context for example {@code new ContextBuilder().priority(Priority.REALTIME).build()}
+     * @param host for example {@code new Host("api.nameapi.org", 80)}
+     * @param portUrlFactory for example {@code NameApiPortUrlFactory.versionLatestStable()}
+     */
+    @NotNull
+    public static Mode withContext(@NotNull String apiKey, @NotNull Context context, @NotNull Host host, @NotNull RestPortUrlFactory portUrlFactory) {
+        return minimal(apiKey, host, portUrlFactory)
+                .with(NameApiKeys.CONTEXT, context);
+    }
+
+    /**
+     * Overloaded method that uses
+     * for host: {@code new Host("api.nameapi.org", 80)}
+     * for port url: {@code NameApiPortUrlFactory.versionLatestStable()}
+     */
+    @NotNull
+    public static Mode withContext(@NotNull String apiKey, @NotNull Context context) {
+        return withContext(apiKey, context, DEFAULT_HOST, DEFAULT_PORT_FACTORY);
+    }
+
 }

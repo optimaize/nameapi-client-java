@@ -19,7 +19,7 @@ public class PingerCommandTest {
         PingerCommand command = new PingerCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         for (int i=0; i<1; i++) {
-            assertEquals(executor.execute(command, mode, null).get().getPong(), "pong");
+            assertEquals(executor.execute(command, mode, null).get(), "pong");
         }
     }
 }

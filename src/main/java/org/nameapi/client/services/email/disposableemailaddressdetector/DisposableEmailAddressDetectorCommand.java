@@ -4,11 +4,8 @@ import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.email.disposableemailaddressdetector.wsdl.SoapDisposableEmailAddressDetector;
-import org.nameapi.client.services.email.disposableemailaddressdetector.wsdl.SoapDisposableEmailAddressDetectorResult;
-import org.nameapi.client.services.email.disposableemailaddressdetector.wsdl.SoapDisposableEmailAddressDetectorService;
+import org.nameapi.ontology5.services.email.disposableemailaddressdetector.DisposableEmailAddressDetectorResult;
 
-import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
@@ -24,28 +21,26 @@ import java.util.concurrent.Callable;
  * and can often not be detected as such.</p>
  */
 public class DisposableEmailAddressDetectorCommand
-        extends NameApiBaseCommand<SoapDisposableEmailAddressDetector, String, DisposableEmailAddressDetectorResult>
+        extends NameApiBaseCommand<RestPort, String, DisposableEmailAddressDetectorResult>
 {
 
-    private static final String servicePath = "/email/disposableemailaddressdetector";
+    private static final String SERVICE_PATH = "/email/disposableemailaddressdetector";
 
     public DisposableEmailAddressDetectorCommand() {
-        super(SoapDisposableEmailAddressDetector.class);
+        super(RestPort.class);
     }
 
     @Override @NotNull
     public DisposableEmailAddressDetectorResult call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
-        SoapDisposableEmailAddressDetectorResult result = getPort(ec).isDisposable(getContext(ec), arg.get());
-        return new DisposableEmailAddressDetectorResult(result.getDisposable());
+        return getPort(ec).call(getApiKey(ec), arg.get());
     }
 
     @NotNull @Override
-    protected Callable<SoapDisposableEmailAddressDetector> createPort(@NotNull final ExecutionContext ec) {
-        return new Callable<SoapDisposableEmailAddressDetector>() {
+    protected Callable<RestPort> createPort(@NotNull final ExecutionContext ec) {
+        return new Callable<RestPort>() {
             @Override
-            public SoapDisposableEmailAddressDetector call() throws Exception {
-                URL url = makeUrl(ec, servicePath);
-                return new SoapDisposableEmailAddressDetectorService(url).getSoapDisposableEmailAddressDetectorPort();
+            public RestPort call() throws Exception {
+                return new RestPort(makeClient(ec), SERVICE_PATH);
             }
         };
     }

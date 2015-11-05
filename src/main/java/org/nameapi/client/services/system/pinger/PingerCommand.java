@@ -4,10 +4,7 @@ import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.system.pinger.wsdl.SoapPinger;
-import org.nameapi.client.services.system.pinger.wsdl.SoapPingerService;
 
-import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
@@ -22,26 +19,25 @@ import java.util.concurrent.Callable;
  *
  * @author eike, andrej
  */
-public class PingerCommand extends NameApiBaseCommand<SoapPinger, Void, PingerResult> {
+public class PingerCommand extends NameApiBaseCommand<RestPort, Void, String> {
 
-    private static final String servicePath = "/system/pinger";
+    private static final String SERVICE_PATH = "/system/ping";
 
     public PingerCommand() {
-        super(SoapPinger.class);
+        super(RestPort.class);
     }
 
     @Override
-    public PingerResult call(@NotNull Optional<Void> arg, @NotNull ExecutionContext ec) throws Exception {
-        return new PingerResult( getPort(ec).ping(getContext(ec)).getPong() );
+    public String call(@NotNull Optional<Void> arg, @NotNull ExecutionContext ec) throws Exception {
+        return getPort(ec).ping(getApiKey(ec));
     }
 
     @NotNull @Override
-    protected Callable<SoapPinger> createPort(@NotNull final ExecutionContext ec) {
-        return new Callable<SoapPinger>() {
+    protected Callable<RestPort> createPort(@NotNull final ExecutionContext ec) {
+        return new Callable<RestPort>() {
             @Override
-            public SoapPinger call() throws Exception {
-                URL url = makeUrl(ec, servicePath);
-                return new SoapPingerService(url).getSoapPingerPort();
+            public RestPort call() throws Exception {
+                return new RestPort(makeClient(ec), SERVICE_PATH);
             }
         };
     }

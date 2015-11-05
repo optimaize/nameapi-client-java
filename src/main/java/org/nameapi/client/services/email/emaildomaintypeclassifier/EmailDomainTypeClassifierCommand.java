@@ -4,11 +4,8 @@ import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.email.emaildomaintypeclassifier.wsdl.EmailDomainType;
-import org.nameapi.client.services.email.emaildomaintypeclassifier.wsdl.SoapEmailDomainTypeClassifier;
-import org.nameapi.client.services.email.emaildomaintypeclassifier.wsdl.SoapEmailDomainTypeClassifierService;
+import org.nameapi.ontology5.services.email.emaildomaintypeclassifier.EmailDomainTypeClassifierResult;
 
-import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
@@ -24,28 +21,27 @@ import java.util.concurrent.Callable;
  * sometimes often a basic free email account.</p>
  */
 public class EmailDomainTypeClassifierCommand
-        extends NameApiBaseCommand<SoapEmailDomainTypeClassifier, String, EmailDomainType>
+        extends NameApiBaseCommand<RestPort, String, EmailDomainTypeClassifierResult>
 {
 
-    private static final String servicePath = "/email/emaildomaintypeclassifier";
+
+    private static final String SERVICE_PATH = "/email/emaildomaintypeclassifier";
 
     public EmailDomainTypeClassifierCommand() {
-        super(SoapEmailDomainTypeClassifier.class);
+        super(RestPort.class);
     }
 
     @Override @NotNull
-    public EmailDomainType call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
-        if (true) throw new UnsupportedOperationException("This service is currently not enabled.");
-        return getPort(ec).classify(getContext(ec), arg.get());
+    public EmailDomainTypeClassifierResult call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
+        return getPort(ec).call(getApiKey(ec), arg.get());
     }
 
     @NotNull @Override
-    protected Callable<SoapEmailDomainTypeClassifier> createPort(@NotNull final ExecutionContext ec) {
-        return new Callable<SoapEmailDomainTypeClassifier>() {
+    protected Callable<RestPort> createPort(@NotNull final ExecutionContext ec) {
+        return new Callable<RestPort>() {
             @Override
-            public SoapEmailDomainTypeClassifier call() throws Exception {
-                URL url = makeUrl(ec, servicePath);
-                return new SoapEmailDomainTypeClassifierService(url).getSoapEmailDomainTypeClassifierPort();
+            public RestPort call() throws Exception {
+                return new RestPort(makeClient(ec), SERVICE_PATH);
             }
         };
     }

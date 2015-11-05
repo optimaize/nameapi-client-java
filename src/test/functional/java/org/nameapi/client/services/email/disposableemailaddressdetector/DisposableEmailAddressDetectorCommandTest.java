@@ -2,7 +2,7 @@ package org.nameapi.client.services.email.disposableemailaddressdetector;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import crema.lang.Maybe;
+import cremacopy.lang.Maybe;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.testng.annotations.Test;

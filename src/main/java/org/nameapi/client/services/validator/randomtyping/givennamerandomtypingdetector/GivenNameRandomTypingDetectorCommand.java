@@ -3,40 +3,34 @@ package org.nameapi.client.services.validator.randomtyping.givennamerandomtyping
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.validator.randomtyping.givennamerandomtypingdetector.wsdl.SoapGivenNameRandomTypingDetector;
-import org.nameapi.client.services.validator.randomtyping.givennamerandomtypingdetector.wsdl.SoapGivenNameRandomTypingDetectorService;
+import org.nameapi.client.services.validator.randomtyping.RandomTypingResult;
 
-import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
  * ...
  */
-public class GivenNameRandomTypingDetectorCommand
-        extends NameApiBaseCommand<SoapGivenNameRandomTypingDetector, String, Integer>
-{
+public class GivenNameRandomTypingDetectorCommand extends NameApiBaseCommand<RestPort, String, RandomTypingResult> {
 
-    private static final String servicePath = "/validator/randomtypingdetector/givennamefield";
+    private static final String SERVICE_PATH = "/validator/randomtypingdetector/givennamefield";
 
     public GivenNameRandomTypingDetectorCommand() {
-        super(SoapGivenNameRandomTypingDetector.class);
+        super(RestPort.class);
     }
 
-    @Override @Nullable
-    public Integer call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
-        return getPort(ec).checkField(getContext(ec), arg.get());
+    @Override
+    public RandomTypingResult call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
+        return getPort(ec).ping(getApiKey(ec), arg.get());
     }
 
-
-    @NotNull @Override
-    protected Callable<SoapGivenNameRandomTypingDetector> createPort(@NotNull final ExecutionContext ec) {
-        return new Callable<SoapGivenNameRandomTypingDetector>() {
+    @NotNull
+    @Override
+    protected Callable<RestPort> createPort(@NotNull final ExecutionContext ec) {
+        return new Callable<RestPort>() {
             @Override
-            public SoapGivenNameRandomTypingDetector call() throws Exception {
-                URL url = makeUrl(ec, servicePath);
-                return new SoapGivenNameRandomTypingDetectorService(url).getSoapGivenNameRandomTypingDetectorPort();
+            public RestPort call() throws Exception {
+                return new RestPort(makeClient(ec), SERVICE_PATH);
             }
         };
     }

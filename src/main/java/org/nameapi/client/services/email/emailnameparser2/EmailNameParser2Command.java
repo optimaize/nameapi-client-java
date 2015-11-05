@@ -4,15 +4,8 @@ import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.email.emailnameparser.EmailNameParserMatch;
-import org.nameapi.client.services.email.emailnameparser.EmailNameParserMatchImpl;
-import org.nameapi.client.services.email.emailnameparser.NameFromEmailAddress;
-import org.nameapi.client.services.email.emailnameparser.NameFromEmailAddressImpl;
-import org.nameapi.client.services.email.emailnameparser2.wsdl.*;
+import org.nameapi.ontology5.services.email.emailnameparser.EmailNameParserResult;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -41,60 +34,31 @@ import java.util.concurrent.Callable;
  * </p>
  */
 public class EmailNameParser2Command
-        extends NameApiBaseCommand<SoapEmailNameParser2, String, EmailNameParser2Result>
+        extends NameApiBaseCommand<RestPort, String, EmailNameParserResult>
 {
 
-    private static final String servicePath = "/email/emailnameparser2";
+
+    private static final String SERVICE_PATH = "/email/emailnameparser2";
 
     public EmailNameParser2Command() {
-        super(SoapEmailNameParser2.class);
+        super(RestPort.class);
     }
 
     @Override @NotNull
-    public EmailNameParser2Result call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
-        SoapEmailNameParserResult2 soapResult = getPort(ec).parse(getContext(ec), arg.get());
-        return convert(soapResult);
-    }
-
-    @NotNull
-    private EmailNameParser2Result convert(@NotNull SoapEmailNameParserResult2 soapResult) {
-        List<EmailNameParserMatch> matches = new ArrayList<>();
-        for (SoapEmailNameParserMatch soapMatch : soapResult.getMatches()) {
-            matches.add( convert(soapMatch) );
-        }
-        return new EmailNameParser2ResultImpl(soapResult.getResultType(), matches);
-    }
-    @NotNull
-    private EmailNameParserMatch convert(@NotNull SoapEmailNameParserMatch soapMatch) {
-        return new EmailNameParserMatchImpl(
-                convert(soapMatch.getGivenNames()),
-                convert(soapMatch.getSurnames()),
-                soapMatch.getConfidence()
-        );
-    }
-    @NotNull
-    private List<NameFromEmailAddress> convert(@NotNull List<SoapNameFromEmailAddress> list) {
-        List<NameFromEmailAddress> ret = new ArrayList<>();
-        for (SoapNameFromEmailAddress soapName : list) {
-            ret.add(convert(soapName));
-        }
-        return ret;
-    }
-    @NotNull
-    private NameFromEmailAddress convert(@NotNull SoapNameFromEmailAddress soapName) {
-        return new NameFromEmailAddressImpl(soapName.getName(), soapName.getNameType());
+    public EmailNameParserResult call(@NotNull Optional<String> arg, @NotNull ExecutionContext ec) throws Exception {
+        return getPort(ec).call(getApiKey(ec), arg.get());
     }
 
     @NotNull @Override
-    protected Callable<SoapEmailNameParser2> createPort(@NotNull final ExecutionContext ec) {
-        return new Callable<SoapEmailNameParser2>() {
+    protected Callable<RestPort> createPort(@NotNull final ExecutionContext ec) {
+        return new Callable<RestPort>() {
             @Override
-            public SoapEmailNameParser2 call() throws Exception {
-                URL url = makeUrl(ec, servicePath);
-                return new SoapEmailNameParser2Service(url).getSoapEmailNameParser2Port();
+            public RestPort call() throws Exception {
+                return new RestPort(makeClient(ec), SERVICE_PATH);
             }
         };
     }
+
 
 }
 

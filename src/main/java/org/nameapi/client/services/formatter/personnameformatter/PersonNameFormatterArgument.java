@@ -3,7 +3,7 @@ package org.nameapi.client.services.formatter.personnameformatter;
 import com.optimaize.command4j.lang.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.formatter.FormatterProperties;
-import org.nameapi.ontology4.input.entities.person.InputPerson;
+import org.nameapi.ontology5.input.entities.person.InputPerson;
 
 /**
  *

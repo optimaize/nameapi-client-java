@@ -3,52 +3,36 @@ package org.nameapi.client.services.genderizer.persongenderizer;
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
-import org.nameapi.client.commonwsdl.Conversions;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.genderizer.PersonGenderizerResult;
-import org.nameapi.client.services.genderizer.persongenderizer.wsdl.SoapPersonGenderizer;
-import org.nameapi.client.services.genderizer.persongenderizer.wsdl.SoapPersonGenderizerResult;
-import org.nameapi.client.services.genderizer.persongenderizer.wsdl.SoapPersonGenderizerService;
-import org.nameapi.ontology4.input.entities.person.InputPerson;
+import org.nameapi.ontology5.input.entities.person.InputPerson;
+import org.nameapi.ontology5.services.genderizer.GenderizerResult;
 
-import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
  * Attempts to detect the person's gender based on the inputs, especially the person's name.
  */
 public class PersonGenderizerCommand
-        extends NameApiBaseCommand<SoapPersonGenderizer, InputPerson, PersonGenderizerResult>
+        extends NameApiBaseCommand<RestPort, InputPerson, GenderizerResult>
 {
 
-    private static final String servicePath = "/genderizer/persongenderizer";
+    private static final String SERVICE_PATH = "/genderizer/persongenderizer";
 
     public PersonGenderizerCommand() {
-        super(SoapPersonGenderizer.class);
+        super(RestPort.class);
     }
 
-    @Override @NotNull
-    public PersonGenderizerResult call(@NotNull Optional<InputPerson> arg, @NotNull ExecutionContext ec) throws Exception {
-        SoapPersonGenderizerResult result = getPort(ec).assess(getContext(ec), Conversions.convert(arg.get()));
-        return convert(result);
+    @Override
+    public GenderizerResult call(@NotNull Optional<InputPerson> arg, @NotNull ExecutionContext ec) throws Exception {
+        return getPort(ec).call(getApiKey(ec), getContext(ec), arg.get());
     }
-
-    private PersonGenderizerResult convert(SoapPersonGenderizerResult result) {
-        return new PersonGenderizerResult(
-                result.getGender(),
-                result.getMaleProportion(),
-                result.getConfidence()
-        );
-    }
-
 
     @NotNull @Override
-    protected Callable<SoapPersonGenderizer> createPort(@NotNull final ExecutionContext ec) {
-        return new Callable<SoapPersonGenderizer>() {
+    protected Callable<RestPort> createPort(@NotNull final ExecutionContext ec) {
+        return new Callable<RestPort>() {
             @Override
-            public SoapPersonGenderizer call() throws Exception {
-                URL url = makeUrl(ec, servicePath);
-                return new SoapPersonGenderizerService(url).getSoapPersonGenderizerPort();
+            public RestPort call() throws Exception {
+                return new RestPort(makeClient(ec), SERVICE_PATH);
             }
         };
     }

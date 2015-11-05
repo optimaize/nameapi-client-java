@@ -2,7 +2,7 @@
 package org.nameapi.client.services.validator.placeholdernamedetector;
 
 import com.google.common.base.Optional;
-import crema.annotation.Immutable;
+import cremacopy.annotation.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
