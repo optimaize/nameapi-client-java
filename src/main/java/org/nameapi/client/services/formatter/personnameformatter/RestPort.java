@@ -6,7 +6,7 @@ import com.optimaize.anythingworks.client.rest.http.RestHttpClient;
 import com.optimaize.anythingworks.client.rest.http.RestHttpClientResponse;
 import com.optimaize.anythingworks.common.rest.TypeRef;
 import org.nameapi.client.services.RestServicePort;
-import org.nameapi.client.services.formatter.FormatterResult;
+import org.nameapi.ontology5.services.formatter.FormatterResult;
 
 /**
  *

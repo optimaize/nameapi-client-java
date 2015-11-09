@@ -4,7 +4,8 @@ import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.client.services.formatter.FormatterResult;
+import org.nameapi.ontology5.services.formatter.FormatterResult;
+import org.nameapi.ontology5.services.formatter.personnameformatter.PersonNameFormatterArgument;
 
 import java.util.concurrent.Callable;
 
