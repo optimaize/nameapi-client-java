@@ -1,4 +1,4 @@
-package org.nameapi.client.services.system.exceptionthrower;
+package org.nameapi.client.services.development.exceptionthrower;
 
 import com.optimaize.anythingworks.client.rest.http.HeaderParams;
 import com.optimaize.anythingworks.client.rest.http.QueryParams;

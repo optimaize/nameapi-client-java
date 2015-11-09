@@ -1,4 +1,4 @@
-package org.nameapi.client.services.system.exceptionthrower;
+package org.nameapi.client.services.development.exceptionthrower;
 
 /**
  *

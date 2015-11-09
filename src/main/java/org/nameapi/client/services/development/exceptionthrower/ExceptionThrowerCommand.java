@@ -1,4 +1,4 @@
-package org.nameapi.client.services.system.exceptionthrower;
+package org.nameapi.client.services.development.exceptionthrower;
 
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
@@ -37,7 +37,7 @@ public class ExceptionThrowerCommand extends NameApiBaseCommand<RestPort, Except
 
 
 
-    private static final String SERVICE_PATH = "/system/exceptionthrower";
+    private static final String SERVICE_PATH = "/development/exceptionthrower";
 
     public ExceptionThrowerCommand() {
         super(RestPort.class);

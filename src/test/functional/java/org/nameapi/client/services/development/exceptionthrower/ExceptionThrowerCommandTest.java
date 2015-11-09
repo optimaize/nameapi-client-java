@@ -1,10 +1,9 @@
-package org.nameapi.client.services.system.exceptionthrower;
+package org.nameapi.client.services.development.exceptionthrower;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
-import org.testng.annotations.Test;
 
 /**
  */
