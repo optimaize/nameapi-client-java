@@ -5,7 +5,6 @@ import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
 import org.nameapi.ontology5.services.formatter.FormatterResult;
-import org.nameapi.ontology5.services.formatter.personnameformatter.PersonNameFormatterArgument;
 
 import java.util.concurrent.Callable;
 
@@ -26,7 +25,7 @@ public class PersonNameFormatterCommand
 
     @Override
     public FormatterResult call(@NotNull Optional<PersonNameFormatterArgument> arg, @NotNull ExecutionContext ec) throws Exception {
-        return getPort(ec).ping(getApiKey(ec));
+        return getPort(ec).call(getApiKey(ec), getContext(ec), arg.get().getInputPerson(), arg.get().getProperties());
     }
 
     @NotNull @Override
