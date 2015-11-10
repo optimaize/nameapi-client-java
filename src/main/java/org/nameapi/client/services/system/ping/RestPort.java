@@ -1,4 +1,4 @@
-package org.nameapi.client.services.system.pinger;
+package org.nameapi.client.services.system.ping;
 
 import com.optimaize.anythingworks.client.rest.http.HeaderParams;
 import com.optimaize.anythingworks.client.rest.http.QueryParams;

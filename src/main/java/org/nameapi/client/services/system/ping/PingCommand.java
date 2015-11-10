@@ -1,4 +1,4 @@
-package org.nameapi.client.services.system.pinger;
+package org.nameapi.client.services.system.ping;
 
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
@@ -19,11 +19,11 @@ import java.util.concurrent.Callable;
  *
  * @author eike, andrej
  */
-public class PingerCommand extends NameApiBaseCommand<RestPort, Void, String> {
+public class PingCommand extends NameApiBaseCommand<RestPort, Void, String> {
 
     private static final String SERVICE_PATH = "/system/ping";
 
-    public PingerCommand() {
+    public PingCommand() {
         super(RestPort.class);
     }
 

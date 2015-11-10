@@ -1,4 +1,4 @@
-package org.nameapi.client.services.system.pinger;
+package org.nameapi.client.services.system.ping;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
@@ -10,13 +10,13 @@ import static org.testng.Assert.assertEquals;
 
 /**
  */
-public class PingerCommandTest {
+public class PingCommandTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
     @Test
     public void testCall() throws Exception {
-        PingerCommand command = new PingerCommand();
+        PingCommand command = new PingCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         for (int i=0; i<1; i++) {
             assertEquals(executor.execute(command, mode, null).get(), "pong");
