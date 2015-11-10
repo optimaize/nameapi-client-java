@@ -26,7 +26,7 @@ public class PersonNameFormatterCommandTest extends AbstractTest {
 
         NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("petra müller")).build();
 //        FormatterProperties properties = new FormatterPropertiesBuilder().build();
-        FormatterProperties properties = new FormatterProperties();
+        FormatterProperties properties = new FormatterProperties(true);
         PersonNameFormatterArgument argument = new PersonNameFormatterArgument(person, properties);
         FormatterResult formatterResult = executor.execute(command, mode, argument).get();
         assertEquals(formatterResult.getFormatted(), "Petra Müller");
