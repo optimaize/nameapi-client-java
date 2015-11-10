@@ -4,7 +4,6 @@ import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.client.services.NameApiBaseCommand;
-import org.nameapi.ontology5.input.entities.person.InputPerson;
 import org.nameapi.ontology5.services.matcher.personmatcher.PersonMatcherResult;
 
 import java.util.concurrent.Callable;
@@ -13,7 +12,7 @@ import java.util.concurrent.Callable;
  * Compares two people and tells if and how they match.
  */
 public class PersonMatcherCommand
-        extends NameApiBaseCommand<RestPort, InputPerson, PersonMatcherResult>
+        extends NameApiBaseCommand<RestPort, PersonMatcherArgument, PersonMatcherResult>
 {
 
     private static final String SERVICE_PATH = "/matcher/personmatcher";
@@ -23,8 +22,8 @@ public class PersonMatcherCommand
     }
 
     @Override
-    public PersonMatcherResult call(@NotNull Optional<InputPerson> arg, @NotNull ExecutionContext ec) throws Exception {
-        return getPort(ec).call(getApiKey(ec), getContext(ec), arg.get());
+    public PersonMatcherResult call(@NotNull Optional<PersonMatcherArgument> arg, @NotNull ExecutionContext ec) throws Exception {
+        return getPort(ec).call(getApiKey(ec), getContext(ec), arg.get().getInputPerson1(), arg.get().getInputPerson2());
     }
 
     @NotNull @Override

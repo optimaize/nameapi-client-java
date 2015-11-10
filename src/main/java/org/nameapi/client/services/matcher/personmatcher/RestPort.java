@@ -9,6 +9,7 @@ import org.nameapi.client.services.RestServicePort;
 import org.nameapi.ontology5.input.context.Context;
 import org.nameapi.ontology5.input.entities.person.InputPerson;
 import org.nameapi.ontology5.services.InputWithPerson;
+import org.nameapi.ontology5.services.InputWithTwoPeople;
 import org.nameapi.ontology5.services.matcher.personmatcher.PersonMatcherResult;
 
 /**
@@ -22,14 +23,14 @@ class RestPort extends RestServicePort {
         super(restApiClient, servicePath);
     }
 
-    public PersonMatcherResult call(String apiKey, Context context, InputPerson inputPerson) {
+    public PersonMatcherResult call(String apiKey, Context context, InputPerson inputPerson1, InputPerson inputPerson2) {
         QueryParams queryParams = QueryParams.create();
         queryParams.add("apiKey", apiKey);
 
         RestHttpClientResponse<PersonMatcherResult> response = restApiClient.invokeBody(
                 servicePath, "POST",
                 queryParams, HeaderParams.none(),
-                new InputWithPerson(context, inputPerson),
+                new InputWithTwoPeople(context, inputPerson1, inputPerson2),
                 returnType
         );
         return response.getResult().get();
