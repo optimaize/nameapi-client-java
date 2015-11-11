@@ -38,7 +38,7 @@ public class EmailNameParserCommand
 {
 
 
-    private static final String SERVICE_PATH = "/email/emailnameparser2";
+    private static final String SERVICE_PATH = "/email/emailnameparser";
 
     public EmailNameParserCommand() {
         super(RestPort.class);
