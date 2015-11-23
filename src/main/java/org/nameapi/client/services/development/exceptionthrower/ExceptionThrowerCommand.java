@@ -12,31 +12,6 @@ import java.util.concurrent.Callable;
  */
 public class ExceptionThrowerCommand extends NameApiBaseCommand<RestPort, ExceptionThrowerParams, String> {
 
-//    @Override
-//    public String call(@NotNull Optional<ExceptionType> arg, @NotNull ExecutionContext ec) throws Exception {
-//        SoapExceptionThrower port = getPort(ec);
-//        SoapContext context = getContext(ec);
-//        ExceptionType.assertSize(5);
-//        switch (arg.get()) {
-//            case InvalidInput:
-//                return port.throwInvalidInput(context);
-//            case Internal:
-//                return port.throwInternal(context);
-//            case AccessDeniedNoSuchAccount:
-//                return port.throwAccessDeniedNoSuchAccount(context);
-//            case AccessDeniedRequestLimitExceeded:
-//                return port.throwAccessDeniedRequestLimitExceeded(context);
-//            case AccessDeniedTooManyConcurrentRequests:
-//                return port.throwAccessDeniedTooManyConcurrentRequests(context);
-//            default:
-//                throw new AssertionError("Dead code reached!");
-//        }
-//    }
-
-
-
-
-
     private static final String SERVICE_PATH = "/development/exceptionthrower";
 
     public ExceptionThrowerCommand() {
@@ -45,7 +20,7 @@ public class ExceptionThrowerCommand extends NameApiBaseCommand<RestPort, Except
 
     @Override
     public String call(@NotNull Optional<ExceptionThrowerParams> arg, @NotNull ExecutionContext ec) throws Exception {
-        return getPort(ec).call(getApiKey(ec));
+        return getPort(ec).call(getApiKey(ec), arg.get().getExceptionType(), arg.get().getExceptionChance());
     }
 
     @NotNull @Override

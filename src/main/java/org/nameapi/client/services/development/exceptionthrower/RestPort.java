@@ -18,9 +18,11 @@ class RestPort extends RestServicePort {
         super(restApiClient, servicePath);
     }
 
-    public String call(String apiKey) {
+    public String call(String apiKey, ExceptionType exceptionType, int exceptionChance) {
         QueryParams queryParams = QueryParams.create();
         queryParams.add("apiKey", apiKey);
+        queryParams.add("exceptionType", exceptionType.name());
+        queryParams.add("exceptionChance", ""+exceptionChance);
 
         RestHttpClientResponse<String> response = restApiClient.invokeGet(
                 servicePath,

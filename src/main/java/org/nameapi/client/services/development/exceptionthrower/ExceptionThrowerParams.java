@@ -5,13 +5,6 @@ package org.nameapi.client.services.development.exceptionthrower;
  */
 public class ExceptionThrowerParams {
 
-    public enum ExceptionType {
-        NotAuthorized,
-        Forbidden,
-        BadRequest,
-        InternalServerError
-    }
-
     public static class Builder {
         private ExceptionType exceptionType;
         private int exceptionChance = 100;

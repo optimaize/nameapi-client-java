@@ -5,11 +5,13 @@ package org.nameapi.client.services.development.exceptionthrower;
  */
 public enum ExceptionType {
     InvalidInput,
-    Internal,
 
     AccessDeniedNoSuchAccount,
-    AccessDeniedRequestLimitExceeded,
-    AccessDeniedTooManyConcurrentRequests;
+//    AccessDeniedRequestLimitExceeded,
+//    AccessDeniedTooManyConcurrentRequests,
+
+    InternalServerError,
+    ;
 
     /**
      * Developer: Call this before doing a switch on an enum value.
