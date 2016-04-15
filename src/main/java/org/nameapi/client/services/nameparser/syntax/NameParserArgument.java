@@ -1,8 +1,8 @@
 package org.nameapi.client.services.nameparser.syntax;
 
-import cremacopy.annotation.Immutable;
-import cremacopy.lang.Preconditions;
 import org.jetbrains.annotations.NotNull;
+import org.nameapi.ontology5.cremalang.annotation.Immutable;
+import org.nameapi.ontology5.cremalang.lang.Preconditions;
 
 import java.util.List;
 

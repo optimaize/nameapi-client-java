@@ -2,9 +2,9 @@ package org.nameapi.client.services.email.disposableemailaddressdetector;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
-import cremacopy.lang.Maybe;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
+import org.nameapi.ontology5.cremalang.lang.Maybe;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

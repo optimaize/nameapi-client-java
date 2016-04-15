@@ -2,7 +2,7 @@
 package org.nameapi.client.services.nameparser.fieldnameparser;
 
 import com.google.common.collect.ImmutableList;
-import cremacopy.annotation.Immutable;
+import org.nameapi.ontology5.cremalang.annotation.Immutable;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 
 package org.nameapi.client.services.nameparser.syntax;
 
-import cremacopy.annotation.GeneratedCode;
-import cremacopy.lang.Preconditions;
 import org.jetbrains.annotations.NotNull;
+import org.nameapi.ontology5.cremalang.annotation.GeneratedCode;
+import org.nameapi.ontology5.cremalang.lang.Preconditions;
 
 /**
  */

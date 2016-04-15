@@ -2,9 +2,9 @@
 package org.nameapi.client.services.nameparser;
 
 import com.google.common.base.Optional;
-import cremacopy.annotation.Immutable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.nameapi.ontology5.cremalang.annotation.Immutable;
 
 import java.util.List;
 

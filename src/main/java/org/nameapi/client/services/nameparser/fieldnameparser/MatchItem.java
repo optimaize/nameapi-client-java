@@ -1,8 +1,8 @@
 
 package org.nameapi.client.services.nameparser.fieldnameparser;
 
-import cremacopy.annotation.Immutable;
 import org.jetbrains.annotations.NotNull;
+import org.nameapi.ontology5.cremalang.annotation.Immutable;
 import org.nameapi.ontology5.output.entities.person.name.Term;
 
 
