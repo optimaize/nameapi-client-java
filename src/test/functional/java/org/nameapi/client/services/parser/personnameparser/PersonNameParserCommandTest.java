@@ -10,12 +10,15 @@ import org.nameapi.ontology5.input.entities.person.LegalInputPersonBuilder;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
 import org.nameapi.ontology5.input.entities.person.gender.ComputedPersonGender;
+import org.nameapi.ontology5.input.entities.person.gender.StoragePersonGender;
 import org.nameapi.ontology5.input.entities.person.name.builder.AmericanInputPersonNameBuilder;
 import org.nameapi.ontology5.input.entities.person.name.builder.NameBuilders;
 import org.nameapi.ontology5.input.entities.person.name.builder.WesternInputPersonNameBuilder;
 import org.nameapi.ontology5.output.entities.person.name.OutputPersonName;
 import org.nameapi.ontology5.output.entities.person.name.TermType;
+import org.nameapi.ontology5.services.parser.personnameparser.DisputeType;
 import org.nameapi.ontology5.services.parser.personnameparser.ParsedPerson;
+import org.nameapi.ontology5.services.parser.personnameparser.ParsedPersonMatch;
 import org.nameapi.ontology5.services.parser.personnameparser.PersonNameParserResult;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -103,6 +106,28 @@ public class PersonNameParserCommandTest extends AbstractTest {
                 {new LegalInputPersonBuilder().name(NameBuilders.legal().name("Google Inc.").build()).build()},
                 {new LegalInputPersonBuilder().name(NameBuilders.legal().name("Google").legalForm("Inc.").build()).build()}
         };
+    }
+
+
+    @Test
+    public void genderDispute() throws Exception {
+        NaturalInputPerson inputPerson = new NaturalInputPersonBuilder()
+                .name(new WesternInputPersonNameBuilder().fullname("Petra Müller").build())
+                .gender(StoragePersonGender.MALE)
+                .build();
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPersonMatch bestMatch = result.getBestMatch();
+
+        ParsedPerson parsedPerson = bestMatch.getParsedPerson();
+        OutputPersonName firstName = parsedPerson.getOutputPersonName();
+        assertEquals("Petra", firstName.getFirst(TermType.GIVENNAME).get().getString());
+        assertEquals("Müller", firstName.getFirst(TermType.SURNAME).get().getString());
+
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+        assertEquals(bestMatch.getParserDisputes().size(), 1);
+        assertEquals(bestMatch.getParserDisputes().get(0).getDisputeType(), DisputeType.GENDER);
     }
 
 }
