@@ -12,10 +12,12 @@ import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
 import org.nameapi.ontology5.input.entities.person.age.AgeInfoFactory;
 import org.nameapi.ontology5.input.entities.person.gender.ComputedPersonGender;
+import org.nameapi.ontology5.input.entities.person.gender.StoragePersonGender;
 import org.nameapi.ontology5.services.genderizer.GenderizerResult;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 
 /**
  */
@@ -75,16 +77,21 @@ public class PersonGenderizerCommandTest extends AbstractTest {
         assertEquals(result.getGender(), ComputedPersonGender.MALE);
     }
 
-//    /**
-//     * Passing the gender is invalid because if it's already known it can only be validated (use another service).
-//     */
-//    @Test(expectedExceptions = InvalidInputServiceException.class)
-//    public void testCall_ex() throws Exception {
-//        PersonGenderizerCommand command = new PersonGenderizerCommand();
-//        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
-//        NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("John", "Doe"))
-//                .gender(StoragePersonGender.MALE)
-//        .build();
-//        executor.execute(command, mode, person);
-//    }
+    /**
+     * Passing the gender is invalid because if it's already known it can only be validated (use another service).
+     */
+    @Test
+    public void testCall_ex() throws Exception {
+        PersonGenderizerCommand command = new PersonGenderizerCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        NaturalInputPerson person = new NaturalInputPersonBuilder().name(makeName("John", "Doe"))
+                .gender(StoragePersonGender.MALE)
+        .build();
+        try {
+            executor.execute(command, mode, person);
+            fail("Expected to get an exception!");
+        } catch (Exception e) {
+            //currently InternalServerErrorServiceException, something like InvalidInputServiceException would be better suited.
+        }
+    }
 }

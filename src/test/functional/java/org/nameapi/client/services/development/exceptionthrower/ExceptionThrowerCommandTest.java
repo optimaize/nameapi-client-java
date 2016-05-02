@@ -12,6 +12,7 @@ import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.fail;
 
 /**
@@ -31,15 +32,27 @@ public class ExceptionThrowerCommandTest {
         }
     }
 
-    @Test(expectedExceptions = InternalServerErrorServiceException.class)
+    @Test
     public void testCall2() throws Exception {
-        execute(ExceptionType.InternalServerError);
+        try {
+            execute(ExceptionType.InternalServerError);
+            fail("Expected exception!");
+        } catch (InternalServerErrorServiceException e) {
+            assertEquals(e.getFaultInfo().getBlame(), Blame.SERVER);
+            assertFalse(e.getFaultInfo().getRetrySameLocation().isPresent());
+        }
     }
 
 
-    @Test(expectedExceptions = AccessDeniedServiceException.class)
+    @Test
     public void testCall3() throws Exception {
-        execute(ExceptionType.AccessDeniedNoSuchAccount);
+        try {
+            execute(ExceptionType.AccessDeniedNoSuchAccount);
+            fail("Expected exception!");
+        } catch (AccessDeniedServiceException e) {
+            assertEquals(e.getFaultInfo().getBlame(), Blame.CLIENT);
+            assertEquals(e.getFaultInfo().getRetrySameLocation().get().getRetryType(), RetryType.NO);
+        }
     }
 
 //    @Test(expectedExceptions = AccessDeniedServiceException.class)

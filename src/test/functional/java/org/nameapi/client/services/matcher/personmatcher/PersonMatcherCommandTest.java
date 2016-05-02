@@ -31,11 +31,22 @@ public class PersonMatcherCommandTest extends AbstractTest {
     }
 
     @Test
-    public void test_matching() throws Exception {
+    public void test_matching_1() throws Exception {
         PersonMatcherCommand command = new PersonMatcherCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         NaturalInputPerson person1 = new NaturalInputPersonBuilder().name(makeName("Petra Müller")).build();
         NaturalInputPerson person2 = new NaturalInputPersonBuilder().name(makeName("Petra Mueller")).build();
+        PersonMatcherArgument argument = new PersonMatcherArgument(person1, person2);
+        PersonMatcherResult result = executor.execute(command, mode, argument).get();
+        assertEquals(result.getMatchType(), PersonMatchType.MATCHING);
+    }
+
+    @Test
+    public void test_matching_2() throws Exception {
+        PersonMatcherCommand command = new PersonMatcherCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        NaturalInputPerson person1 = new NaturalInputPersonBuilder().name(makeName("Petra K. Müller")).build();
+        NaturalInputPerson person2 = new NaturalInputPersonBuilder().name(makeName("Petra Mueller-Meyer")).build();
         PersonMatcherArgument argument = new PersonMatcherArgument(person1, person2);
         PersonMatcherResult result = executor.execute(command, mode, argument).get();
         assertEquals(result.getMatchType(), PersonMatchType.MATCHING);
