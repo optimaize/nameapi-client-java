@@ -29,6 +29,7 @@ public class EmailDomainTypeClassifierCommand
 
     public EmailDomainTypeClassifierCommand() {
         super(RestPort.class);
+        throw new UnsupportedOperationException("Service currently not available as public API.");
     }
 
     @Override @NotNull

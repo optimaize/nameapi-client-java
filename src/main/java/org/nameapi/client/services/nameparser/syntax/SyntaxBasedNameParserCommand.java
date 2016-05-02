@@ -1,6 +1,8 @@
 package org.nameapi.client.services.nameparser.syntax;
 
 /**
+ * Service currently not available as public API.
+ *
  * The command that parses a name string into its elements based on custom syntax rules.
  */
 public class SyntaxBasedNameParserCommand

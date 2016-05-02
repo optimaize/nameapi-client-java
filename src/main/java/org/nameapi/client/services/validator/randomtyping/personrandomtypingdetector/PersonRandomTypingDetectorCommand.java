@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
- * ...
+ * Service currently not available as public API.
  */
 public class PersonRandomTypingDetectorCommand
 //        extends NameApiBaseCommand<SoapPersonRandomTypingDetector, InputPerson, Integer>

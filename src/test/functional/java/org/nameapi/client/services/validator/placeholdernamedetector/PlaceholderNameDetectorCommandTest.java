@@ -14,13 +14,13 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /**
- * ...
+ * Service currently not available as public API.
  */
 public class PlaceholderNameDetectorCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test(dataProvider="people")
+//    @Test(dataProvider="people")
     public void people(String gn, String sn, int minIncl, int maxIncl, FakeType fakeType) throws Exception {
         PlaceholderNameDetectorCommand command = new PlaceholderNameDetectorCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();

@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
- * ...
+ * Service currently not available as public API.
  */
 public class TextFieldRandomTypingDetectorCommand
 //        extends NameApiBaseCommand<SoapTextFieldRandomTypingDetector, String, Integer>

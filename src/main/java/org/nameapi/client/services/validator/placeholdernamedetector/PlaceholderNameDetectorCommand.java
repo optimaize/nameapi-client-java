@@ -11,6 +11,10 @@ import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
+ * Service currently not available as public API.
+ *
+ *
+ *
  * Detects placeholder names such as "John Doe".
  *
  * <p>Returns <code>null</code> if the name is not known as a placeholder name.</p>

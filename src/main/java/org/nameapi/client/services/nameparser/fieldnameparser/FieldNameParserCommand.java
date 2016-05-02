@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
+ * Service currently not available as public API.
+ *
  * Parses the contents of a name field into its components.
  */
 public class FieldNameParserCommand

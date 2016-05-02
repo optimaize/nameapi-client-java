@@ -13,12 +13,13 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
+ * Service currently not available as public API.
  */
 public class PersonRandomTypingDetectorCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test(dataProvider="testSome")
+//    @Test(dataProvider="testSome")
     public void testSome(String gn, String sn, int minIncl, int maxIncl) throws Exception {
         PersonRandomTypingDetectorCommand command = new PersonRandomTypingDetectorCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();

@@ -15,13 +15,13 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 /**
- * ...
+ * Service currently not available as public API.
  */
 public class FamousPersonDetectorCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test(dataProvider="people")
+//    @Test(dataProvider="people")
     public void people(String gn, String sn, Integer minIncl, Integer maxIncl) throws Exception {
         FamousPersonDetectorCommand command = new FamousPersonDetectorCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();

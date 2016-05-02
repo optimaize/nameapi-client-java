@@ -14,7 +14,7 @@ public class EmailDomainTypeClassifierCommandTest {
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
 
-    //currently disabled service
+    //Service currently not available as public API.
 //    @Test
     public void testCall() throws Exception {
         EmailDomainTypeClassifierCommand command = new EmailDomainTypeClassifierCommand();

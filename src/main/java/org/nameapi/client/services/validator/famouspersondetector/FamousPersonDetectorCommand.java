@@ -11,6 +11,9 @@ import java.net.URL;
 import java.util.concurrent.Callable;
 
 /**
+ * Service currently not available as public API.
+ *
+ *
  * Tells if and how famous a person's name is.
  *
  * <p>The classification is done with a global view, not specific to the context's place.</p>

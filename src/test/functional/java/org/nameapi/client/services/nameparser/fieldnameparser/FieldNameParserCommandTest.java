@@ -18,7 +18,8 @@ public class FieldNameParserCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test
+    //Service currently not available as public API.
+//    @Test
     public void testCall() throws Exception {
         FieldNameParserCommand command = new FieldNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();

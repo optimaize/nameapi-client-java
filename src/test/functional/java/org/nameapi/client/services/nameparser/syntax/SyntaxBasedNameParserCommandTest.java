@@ -17,7 +17,8 @@ public class SyntaxBasedNameParserCommandTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test
+    //Service currently not available as public API.
+//    @Test
     public void testCall() throws Exception {
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         List<NameParserRule> rules = makeRules();

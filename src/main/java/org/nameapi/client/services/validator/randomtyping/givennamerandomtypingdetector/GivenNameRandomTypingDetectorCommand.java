@@ -9,7 +9,9 @@ import org.nameapi.client.services.validator.randomtyping.RandomTypingResult;
 import java.util.concurrent.Callable;
 
 /**
- * ...
+ * Service currently not available as public API.
+ *
+ *
  */
 public class GivenNameRandomTypingDetectorCommand extends NameApiBaseCommand<RestPort, String, RandomTypingResult> {
 
@@ -17,6 +19,7 @@ public class GivenNameRandomTypingDetectorCommand extends NameApiBaseCommand<Res
 
     public GivenNameRandomTypingDetectorCommand() {
         super(RestPort.class);
+        throw new UnsupportedOperationException("Service currently not available as public API.");
     }
 
     @Override

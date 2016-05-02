@@ -13,13 +13,13 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * ...
+ * Service currently not available as public API.
  */
 public class GenericGenderValidatorCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test
+//    @Test
     public void testCall() throws Exception {
         GenericGenderValidatorCommand command = new GenericGenderValidatorCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
