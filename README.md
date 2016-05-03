@@ -42,7 +42,7 @@ Context context = new ContextBuilder()
 Then you need an executor and a mode:
 
 ```java
-CommandExecutor executor = NameApiRemoteExecutors.get()
+CommandExecutor executor = NameApiRemoteExecutors.get();
 Mode mode = NameApiModeFactory.minimal(context);
 ```
 
