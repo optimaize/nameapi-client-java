@@ -130,4 +130,18 @@ public class PersonNameParserCommandTest extends AbstractTest {
         assertEquals(bestMatch.getParserDisputes().get(0).getDisputeType(), DisputeType.GENDER);
     }
 
+
+
+    @Test
+    public void testParseSingleGivenName() throws Exception {
+        NaturalInputPerson inputPerson = new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("John").build()).build();
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName firstName = parsedPerson.getOutputPersonName();
+        assertEquals("John", firstName.getFirst(TermType.GIVENNAME).get().getString());
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+
 }
