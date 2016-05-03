@@ -18,7 +18,7 @@ Using Maven:
     <dependency>
       <groupId>org.nameapi.client</groupId>
       <artifactId>nameapi-client</artifactId>
-      <version>0.3</version>
+      <version>5.0</version>
     </dependency>
 
 Or you can download the jar, or check out the source code from this GitHub project.
@@ -68,9 +68,8 @@ All input objects come with builders or nicely documented setters.
 The result objects returned by the services all have fully documented getters.
 Many input arguments are optional - that means you can start simple, and add more as you need.
 
-Behind the scenes this service api uses SOAP. But luckily you don't need to worry about any
+Behind the scenes this service api uses REST (previous versions used SOAP). But luckily you don't need to worry about any
 of the interface detail, you can just use the provided classes.
-The complexity of some of the objects is the reason why SOAP was chosen over REST.
 
 #### Person input object
 
