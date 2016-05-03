@@ -5,7 +5,7 @@
     <groupId>org.nameapi.client</groupId>
     <artifactId>nameapi-client</artifactId>
     <name>nameapi-client</name>
-    <version>5.1-SNAPSHOT</version>
+    <version>5.0.1-SNAPSHOT</version>
 
     <url>https://github.com/optimaize/nameapi-client-java</url>
     <description>
@@ -41,7 +41,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <anythingworks.version>0.5</anythingworks.version>
-        <ontology.version>5.0.1</ontology.version>
+        <ontology.version>5.0.2</ontology.version>
         <swagger-annotations-version>1.5.4</swagger-annotations-version>
     </properties>
 
@@ -176,19 +176,6 @@
         </profile>
     </profiles>
 
-    <!--
-     This lets Maven see the jars in the lib folder when building.
-     Once the Ontology jar is in Maven Central, we won't need this anymore.
-     See for an overview http://stackoverflow.com/questions/5692256/maven-best-way-of-linking-custom-external-jar-to-my-project
-     and for detail here http://charlie.cu.cc/2012/06/how-add-external-libraries-maven/ -->
-    <repositories>
-        <repository>
-            <id>in-project</id>
-            <name>In Project Repo</name>
-            <url>file://${project.basedir}/lib</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.optimaize.anythingworks.client.rest</groupId>
@@ -196,8 +183,6 @@
             <version>${anythingworks.version}</version>
         </dependency>
 
-        <!-- this dependency is in our internal artifactory repository.
-        and maven finds it through the repository definition in the lib folder. -->
         <dependency>
             <groupId>org.nameapi.ontology.core</groupId>
             <artifactId>nameapi-ontology5-core</artifactId>
