@@ -18,7 +18,7 @@ Using Maven:
     <dependency>
       <groupId>org.nameapi.client</groupId>
       <artifactId>nameapi-client</artifactId>
-      <version>5.0</version>
+      <version>5.0.1</version>
     </dependency>
 
 Or you can download the jar, or check out the source code from this GitHub project.
@@ -42,7 +42,7 @@ Context context = new ContextBuilder()
 Then you need an executor and a mode:
 
 ```java
-CommandExecutor executor = NameApiRemoteExecutors.get()
+CommandExecutor executor = NameApiRemoteExecutors.get();
 Mode mode = NameApiModeFactory.minimal(context);
 ```
 
