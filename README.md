@@ -34,7 +34,6 @@ You need a Context that explains a bit your working environment, something like:
 
 ```java
 Context context = new ContextBuilder()
-    .apiKey("your-api-key")
     .priority(Priority.REALTIME)
     .build();
 ```
@@ -43,7 +42,13 @@ Then you need an executor and a mode:
 
 ```java
 CommandExecutor executor = NameApiRemoteExecutors.get();
-Mode mode = NameApiModeFactory.minimal(context);
+Mode mode = NameApiModeFactory.withContext(
+        "your-api-key",
+        context,
+        //the default and live server is "api.nameapi.org"
+        //we're using the latest release candidate with latest features here:
+        new Host("rc50-api.nameapi.org", 80), NameApiPortUrlFactory.versionLatestStable()
+);
 ```
 
 Now you're ready to execute commands.
@@ -56,8 +61,8 @@ Now you're ready to execute commands.
 This code sends a simple ping to nameapi to test the connection:
 
 ```java
-PingerCommand command = new PingerCommand();
-executor.execute(command, mode, null).get().getPong(); //returns "pong"
+PingCommand command = new PingCommand();
+executor.execute(command, mode, null).get(); //returns "pong"
 ```
 
 
@@ -119,7 +124,7 @@ Using the objects created earlier:
 
 ```java
 PersonGenderizerCommand command = new PersonGenderizerCommand();
-PersonGenderizerResult result = executor.execute(command, mode, inputPerson).get();
+GenderizerResult result = executor.execute(command, mode, inputPerson).get();
 ```
 
 
@@ -145,7 +150,7 @@ The Name Formatter displays personal names in the desired form. This includes th
 ```java
 PersonNameFormatterCommand command = new PersonNameFormatterCommand();
 NaturalInputPerson person = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("john f. kennedy").build() ).build();
-FormatterProperties properties = new FormatterPropertiesBuilder().build();
+FormatterProperties properties = new FormatterProperties(true);
 PersonNameFormatterArgument argument = new PersonNameFormatterArgument(person, properties);
 FormatterResult formatterResult = executor.execute(command, mode, argument).get();
 ```
@@ -167,7 +172,7 @@ The DEA-Detector checks email addresses against a list of known "trash domains" 
 
 ```java
 DisposableEmailAddressDetectorCommand command = new DisposableEmailAddressDetectorCommand();
-DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com");
+DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com").get();
 ```
 
 
