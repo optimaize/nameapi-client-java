@@ -34,7 +34,6 @@ You need a Context that explains a bit your working environment, something like:
 
 ```java
 Context context = new ContextBuilder()
-    .apiKey("your-api-key")
     .priority(Priority.REALTIME)
     .build();
 ```
@@ -43,7 +42,13 @@ Then you need an executor and a mode:
 
 ```java
 CommandExecutor executor = NameApiRemoteExecutors.get();
-Mode mode = NameApiModeFactory.minimal(context);
+Mode mode = NameApiModeFactory.withContext(
+        "your-api-key",
+        context,
+        //the default and live server is "api.nameapi.org"
+        //we're using the latest release candidate with latest features here:
+        new Host("rc50-api.nameapi.org", 80), NameApiPortUrlFactory.versionLatestStable()
+);
 ```
 
 Now you're ready to execute commands.
