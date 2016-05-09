@@ -72,6 +72,7 @@ executor.execute(command, mode, null).get(); //returns "pong"
 All input objects come with builders or nicely documented setters.
 The result objects returned by the services all have fully documented getters.
 Many input arguments are optional - that means you can start simple, and add more as you need.
+The vocabulary for the communication, with input/output classes, is in the separate "Ontology" software. It is included as a Maven dependency. For the project page see https://github.com/optimaize/nameapi-ontology-java
 
 Behind the scenes this service api uses REST (previous versions used SOAP). But luckily you don't need to worry about any
 of the interface detail, you can just use the provided classes.
@@ -174,10 +175,4 @@ The DEA-Detector checks email addresses against a list of known "trash domains" 
 DisposableEmailAddressDetectorCommand command = new DisposableEmailAddressDetectorCommand();
 DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com").get();
 ```
-
-
-## Development Setup for this Project
-
-When you check out the project, make sure your IDE recognizes the "lib" folder with the ontology jar. If not automatic, then in IntelliJ IDEA right click the lib folder and select "Add as Library...".
-This dependency is currently not available from Maven Central. So it was the most convenient way of including the code.
 
