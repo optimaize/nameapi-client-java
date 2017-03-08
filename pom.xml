@@ -41,7 +41,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <anythingworks.version>0.5</anythingworks.version>
-        <ontology.version>5.0.2</ontology.version>
+        <ontology.version>5.1</ontology.version>
         <swagger-annotations-version>1.5.4</swagger-annotations-version>
     </properties>
 
