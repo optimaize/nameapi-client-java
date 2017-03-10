@@ -25,25 +25,6 @@ public class MN_PersonNameParserCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test(dataProvider = "test_MN_1")
-    public void test_MN_1(NaturalInputPerson inputPerson) throws Exception {
-        PersonNameParserCommand command = new PersonNameParserCommand();
-        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
-        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
-        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
-        OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Otgonbayar");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Ganbaatar");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
-    }
-    @DataProvider
-    protected Object[][] test_MN_1() {
-        return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Ganbaatar Otgonbayar").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Otgonbayar").surname("Ganbaatar").build()).build()}
-        };
-    }
-
     @Test(dataProvider = "test_MN_2")
     public void test_MN_2(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();

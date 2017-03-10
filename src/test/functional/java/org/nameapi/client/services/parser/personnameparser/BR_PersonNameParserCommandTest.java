@@ -17,6 +17,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
  * @author Nicole Torres
@@ -35,7 +36,7 @@ public class BR_PersonNameParserCommandTest extends AbstractTest {
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Manuel");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Tavares");
         assertEquals(personName.getSecond(TermType.SURNAME).get().getString(), "Fernandes");
-        assertEquals(personName.getFirst(TermType.QUALIFIER).get().getString(), "Filho");
+        assertTrue(personName.getFirst(TermType.QUALIFIER).get().getString().equalsIgnoreCase("Filho"));
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider

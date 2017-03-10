@@ -17,6 +17,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
  * @author Nicole Torres
@@ -32,15 +33,15 @@ public class CH_PersonNameParserCommandTest extends AbstractTest {
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Fränzi");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Auf Der Maur");
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Annekäthi");
+        assertTrue(personName.getFirst(TermType.SURNAME).get().getString().equalsIgnoreCase("Auf Der Maur"));
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
     }
     @DataProvider
     protected Object[][] test_CH_1() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Fränzi Auf der Maur").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Fränzi").surname("Auf der Maur").build()).build()}
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Annekäthi Auf der Maur").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Annekäthi").surname("Auf der Maur").build()).build()}
         };
     }
 

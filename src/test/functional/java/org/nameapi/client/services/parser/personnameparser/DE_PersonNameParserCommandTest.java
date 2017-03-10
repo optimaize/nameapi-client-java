@@ -36,10 +36,9 @@ public class DE_PersonNameParserCommandTest extends AbstractTest {
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         List<Term> titles = personName.getAll(TermType.TITLE);
-        assertEquals(titles.size(), 3);
+        assertEquals(titles.size(), 2);
         assertEquals(titles.get(0).getString(), "Prof.");
-        assertEquals(titles.get(1).getString(), "Dr.");
-        assertEquals(titles.get(2).getString(), "Dr.");
+        assertEquals(titles.get(1).getString(), "Dr. Dr.");
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Wolfgang");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Berger");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
@@ -68,8 +67,7 @@ public class DE_PersonNameParserCommandTest extends AbstractTest {
 
         ParsedPerson secondPerson = parsedPerson.getPeople().get(1);
         assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.GIVENNAME).get().getString(), "Barbara");
-        assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.SURNAME).get().getString(), "Spinner");
-        assertEquals(secondPerson.getOutputPersonName().getSecond(TermType.SURNAME).get().getString(), "Burger");
+        assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.SURNAME).get().getString(), "Spinner-Burger");
         assertEquals(secondPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
     }
     @DataProvider

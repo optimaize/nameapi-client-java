@@ -33,14 +33,14 @@ public class BT_PersonNameParserCommandTest extends AbstractTest {
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Jigme");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Tenzin");
+        assertEquals(personName.getSecond(TermType.GIVENNAME).get().getString(), "Tenzin");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
     }
     @DataProvider
     protected Object[][] test_BT_1() {
         return new Object[][]{
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Jigme Tenzin").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Jigme").surname("Tenzin").build()).build()}
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Jigme Tenzin").build()).build()}
         };
     }
 
