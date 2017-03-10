@@ -32,8 +32,7 @@ public class RO_PersonNameParserCommandTest extends AbstractTest {
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Alina");
-        assertEquals(personName.getSecond(TermType.GIVENNAME).get().getString(), "Victoria");
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Alina-Victoria");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Popescu");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
     }
@@ -52,8 +51,7 @@ public class RO_PersonNameParserCommandTest extends AbstractTest {
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Alina");
-        assertEquals(personName.getSecond(TermType.GIVENNAME).get().getString(), "Victoria");
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Alina-Victoria");
         assertEquals(personName.getFirst(TermType.GIVENNAMEINITIAL).get().getString(), "M.");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Popescu");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
@@ -75,8 +73,7 @@ public class RO_PersonNameParserCommandTest extends AbstractTest {
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.SALUTATION).get().getString(), "Doamna");
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Alina");
-        assertEquals(personName.getSecond(TermType.GIVENNAME).get().getString(), "Victoria");
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Alina-Victoria");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Popescu");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
     }

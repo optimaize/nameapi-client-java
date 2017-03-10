@@ -33,8 +33,7 @@ public class GB_PersonNameParserCommandTest extends AbstractTest {
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "James");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Roberts");
-        assertEquals(personName.getSecond(TermType.SURNAME).get().getString(), "Taylor");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Roberts-Taylor");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
@@ -54,8 +53,7 @@ public class GB_PersonNameParserCommandTest extends AbstractTest {
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "James");
         assertEquals(personName.getFirst(TermType.NICKNAME).get().getString(), "Jim");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Roberts");
-        assertEquals(personName.getSecond(TermType.SURNAME).get().getString(), "Taylor");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Roberts-Taylor");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider

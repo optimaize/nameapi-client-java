@@ -35,7 +35,7 @@ public class BY_PersonNameParserCommandTest extends AbstractTest {
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Nikita");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Ivanoŭ");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
     protected Object[][] test_BY_1() {

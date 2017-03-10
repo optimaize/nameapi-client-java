@@ -9,6 +9,7 @@ import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
 import org.nameapi.ontology5.input.entities.person.gender.ComputedPersonGender;
 import org.nameapi.ontology5.input.entities.person.name.builder.AmericanInputPersonNameBuilder;
+import org.nameapi.ontology5.input.entities.person.name.builder.WesternInputPersonNameBuilder;
 import org.nameapi.ontology5.output.entities.person.name.OutputPersonName;
 import org.nameapi.ontology5.output.entities.person.name.TermType;
 import org.nameapi.ontology5.services.parser.personnameparser.ParsedPerson;
@@ -66,13 +67,13 @@ public class UA_PersonNameParserCommandTest extends AbstractTest {
         };
     }
 
-    @Test(dataProvider = "test_RU_3")
-    public void test_RU_3(NaturalInputPerson inputPerson) throws Exception {
+    @Test(dataProvider = "test_UA_3")
+    public void test_UA_3(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         //the second match is the one with MIDDLE NAME term type extracted
-        ParsedPerson parsedPerson = result.getMatches().get(1).getParsedPerson();
+        ParsedPerson parsedPerson = result.getMatches().get(0).getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Андрій");
         assertEquals(personName.getFirst(TermType.MIDDLENAME).get().getString(), "Миколайович");
@@ -80,9 +81,9 @@ public class UA_PersonNameParserCommandTest extends AbstractTest {
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
-    protected Object[][] test_RU_3() {
+    protected Object[][] test_UA_3() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().fullname("Андрій Миколайович Шевченко").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Андрій Миколайович Шевченко").build()).build()},
                 {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Андрій").middleName("Миколайович").surname("Шевченко").build()).build()},
         };
     }

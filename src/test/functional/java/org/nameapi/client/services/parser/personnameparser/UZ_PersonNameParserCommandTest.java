@@ -50,18 +50,18 @@ public class UZ_PersonNameParserCommandTest extends AbstractTest {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
-        //the second match is the one with MIDDLE NAME term type extracted
-        ParsedPerson parsedPerson = result.getMatches().get(1).getParsedPerson();
+        ParsedPerson parsedPerson = result.getMatches().get(0).getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Ikrom");
+        assertEquals(personName.getFirst(TermType.MIDDLENAME).get().getString(), "O'ktamovich");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Nazarov");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
     protected Object[][] test_UZ_2() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().fullname("Ikrom O’ktamovich Nazarov").build()).build()},
-                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Ikrom").middleName("O’ktamovich").surname("Nazarov").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Ikrom O'ktamovich Nazarov").build()).build()},
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Ikrom").middleName("O'ktamovich").surname("Nazarov").build()).build()},
         };
     }
 

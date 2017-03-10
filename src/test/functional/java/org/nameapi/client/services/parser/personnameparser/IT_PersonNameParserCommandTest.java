@@ -40,32 +40,10 @@ public class IT_PersonNameParserCommandTest extends AbstractTest {
         assertEquals(givenNames.get(1).getString(), "Vincenzo");
         assertEquals(givenNames.get(2).getString(), "Domenico");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Mastroianni");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
     protected Object[][] test_IT_1() {
-        return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Marcello Vincenzo Domenico Mastroianni").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Marcello Vincenzo Domenico").surname("Mastroianni").build()).build()}
-        };
-    }
-
-    @Test(dataProvider = "test_IT_2")
-    public void test_IT_2(NaturalInputPerson inputPerson) throws Exception {
-        PersonNameParserCommand command = new PersonNameParserCommand();
-        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
-        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
-        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
-        OutputPersonName personName = parsedPerson.getOutputPersonName();
-        List<Term> givenNames = personName.getAll(TermType.GIVENNAME);
-        assertEquals(givenNames.get(0).getString(), "Marcello");
-        assertEquals(givenNames.get(1).getString(), "Vincenzo");
-        assertEquals(givenNames.get(2).getString(), "Domenico");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Mastroianni");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
-    }
-    @DataProvider
-    protected Object[][] test_IT_2() {
         return new Object[][]{
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Marcello Vincenzo Domenico Mastroianni").build()).build()},
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Marcello Vincenzo Domenico").surname("Mastroianni").build()).build()}
