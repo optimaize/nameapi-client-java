@@ -8,6 +8,7 @@ import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
 import org.nameapi.ontology5.input.entities.person.gender.ComputedPersonGender;
+import org.nameapi.ontology5.input.entities.person.name.builder.AmericanInputPersonNameBuilder;
 import org.nameapi.ontology5.input.entities.person.name.builder.WesternInputPersonNameBuilder;
 import org.nameapi.ontology5.output.entities.person.name.OutputPersonName;
 import org.nameapi.ontology5.output.entities.person.name.TermType;
@@ -19,7 +20,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class KG_PersonNameParserCommandTest extends AbstractTest {
 
@@ -63,4 +64,61 @@ public class KG_PersonNameParserCommandTest extends AbstractTest {
         };
     }
 
+    @Test(dataProvider = "test_KG_3")
+    public void test_KG_3(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Келдибай");
+        assertEquals(personName.getFirst(TermType.MIDDLENAME).get().getString(), "Акаевич");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Аманкожоев");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_KG_3() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().fullname("Келдибай Акаевич Аманкожоев").build()).build()},
+                {new NaturalInputPersonBuilder().name(new  AmericanInputPersonNameBuilder().givenName("Келдибай").middleName("Акаевич").surname("Аманкожоев").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_KG_4")
+    public void test_KG_4(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Salamat");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Sadikova");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_KG_4() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Salamat Sadikova").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Salamat").surname("Sadikova").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_KG_5")
+    public void test_KG_5(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Саламат");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Садыкова");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_KG_5() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Саламат Садыкова").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Саламат").surname("Садыкова").build()).build()}
+        };
+    }
 }

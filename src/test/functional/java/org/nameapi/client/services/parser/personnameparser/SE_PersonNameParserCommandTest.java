@@ -22,7 +22,7 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class SE_PersonNameParserCommandTest extends AbstractTest {
 
@@ -49,6 +49,25 @@ public class SE_PersonNameParserCommandTest extends AbstractTest {
         return new Object[][]{
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Maud Solveig Christina Wikström").build()).build()},
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Maud Solveig Christina").surname("Wikström").build()).build()},
+        };
+    }
+
+    @Test(dataProvider = "test_SE_2")
+    public void test_SE_2(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Axel");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Andersson");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_SE_2() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Axel Andersson").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Axel").surname("Andersson").build()).build()},
         };
     }
 

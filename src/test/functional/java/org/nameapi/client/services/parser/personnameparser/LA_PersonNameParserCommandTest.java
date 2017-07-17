@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class LA_PersonNameParserCommandTest extends AbstractTest {
 
@@ -32,15 +32,129 @@ public class LA_PersonNameParserCommandTest extends AbstractTest {
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Khampha");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Keomuongchanh");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Phonethip");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Boulommavong");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
     }
     @DataProvider
     protected Object[][] test_LA_1() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Khampha Keomuongchanh").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Khampha").surname("Keomuongchanh").build()).build()}
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Phonethip Boulommavong").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Phonethip").surname("Boulommavong").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_LA_2")
+    public void test_LA_2(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Phonethip");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Boulommavong");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
+    }
+    @DataProvider
+    protected Object[][] test_LA_2() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Phonethip Boulommavong").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Phonethip").surname("Boulommavong").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_LA_3")
+    public void test_LA_3(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Sisavath");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Keobounphanh");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_LA_3() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Sisavath Keobounphanh").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Sisavath").surname("Keobounphanh").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_LA_4")
+    public void test_LA_4(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "ສີສະຫວາດ");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "ແກ້ວບຸນພັນ");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_LA_4() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("ສີສະຫວາດ ແກ້ວບຸນພັນ").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("ສີສະຫວາດ").surname("ແກ້ວບຸນພັນ").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_LA_5")
+    public void test_LA_5(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Douangdeuane");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Bounyavong");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_LA_5() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Douangdeuane Bounyavong").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Douangdeuane").surname("Bounyavong").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_LA_6")
+    public void test_LA_6(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "ສີສະຫວາດ");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "ແກ້ວບຸນພັນ");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_LA_6() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("ສີສະຫວາດ ແກ້ວບຸນພັນ").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("ສີສະຫວາດ").surname("ແກ້ວບຸນພັນ").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_LA_7")
+    public void test_LA_7(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Douangdeuane");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Bounyavong");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_LA_7() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Douangdeuane Bounyavong").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Douangdeuane").surname("Bounyavong").build()).build()}
         };
     }
 

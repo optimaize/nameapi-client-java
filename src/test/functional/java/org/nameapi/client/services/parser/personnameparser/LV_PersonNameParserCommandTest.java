@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class LV_PersonNameParserCommandTest extends AbstractTest {
 
@@ -68,5 +68,22 @@ public class LV_PersonNameParserCommandTest extends AbstractTest {
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Artūrs Bērziņš un Emīlija Bērziņa").build()).build()},
         };
     }
-
+    @Test(dataProvider = "test_LV_3")
+    public void test_LV_3(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Elizabete");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Ozoliņa");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_LV_3() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Elizabete Ozoliņa").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Elizabete").surname("Ozoliņa").build()).build()}
+        };
+    }
 }

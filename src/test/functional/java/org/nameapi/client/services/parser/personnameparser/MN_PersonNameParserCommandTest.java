@@ -19,14 +19,14 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class MN_PersonNameParserCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test(dataProvider = "test_MN_2")
-    public void test_MN_2(NaturalInputPerson inputPerson) throws Exception {
+    @Test(dataProvider = "test_MN_1")
+    public void test_MN_1(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
@@ -37,15 +37,15 @@ public class MN_PersonNameParserCommandTest extends AbstractTest {
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
-    protected Object[][] test_MN_2() {
+    protected Object[][] test_MN_1() {
         return new Object[][]{
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Ганбаатаргийн Отгонбаяр").build()).build()},
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Отгонбаяр").surname("Ганбаатаргийн").build()).build()}
         };
     }
 
-    @Test(dataProvider = "test_MN_3")
-    public void test_MN_3(NaturalInputPerson inputPerson) throws Exception {
+    @Test(dataProvider = "test_MN_2")
+    public void test_MN_2(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
@@ -56,7 +56,7 @@ public class MN_PersonNameParserCommandTest extends AbstractTest {
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
-    protected Object[][] test_MN_3() {
+    protected Object[][] test_MN_2() {
         return new Object[][]{
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Ganbaatargiin Otgonbayar").build()).build()},
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Otgonbayar").surname("Ganbaatargiin").build()).build()}
