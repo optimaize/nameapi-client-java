@@ -7,6 +7,7 @@ import org.nameapi.client.services.AbstractTest;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology5.input.entities.person.gender.ComputedPersonGender;
 import org.nameapi.ontology5.input.entities.person.name.builder.WesternInputPersonNameBuilder;
 import org.nameapi.ontology5.output.entities.person.name.OutputPersonName;
 import org.nameapi.ontology5.output.entities.person.name.TermType;
@@ -33,6 +34,7 @@ public class AL_PersonNameParserCommandTest extends AbstractTest {
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Altin");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Hoxha");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
     protected Object[][] test_AL_1() {
