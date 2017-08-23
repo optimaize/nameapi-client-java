@@ -21,27 +21,28 @@ import static org.testng.Assert.assertEquals;
 /**
  * @author Nicole Torres / emilia
  */
-public class VI_PersonNameParserCommandTest extends AbstractTest {
+public class LI_PersonNameParserCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
-    //TODO emilia I believe this test is not correct
-    @Test(dataProvider = "test_VI_1")
-    public void test_VI_1(NaturalInputPerson inputPerson) throws Exception {
+
+    @Test(dataProvider = "test_LI_1")
+    public void test_LI_1(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Quang Dũng");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Nguyễn");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Ursula");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Gregg");
+        assertEquals(personName.getFirst(TermType.NAMEATBIRTHINDICATOR).get().getString(), "née");
+        assertEquals(personName.getFirst(TermType.SURNAMEATBIRTH).get().getString(), "Konzett");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
     }
     @DataProvider
-    protected Object[][] test_VI_1() {
+    protected Object[][] test_LI_1() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Quang Dũng Nguyễn").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Quang Dũng").surname("Nguyễn").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Ursula Gregg née Konzett").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Ursula").surname("Gregg née Konzett").build()).build()}
         };
     }
-
 }
