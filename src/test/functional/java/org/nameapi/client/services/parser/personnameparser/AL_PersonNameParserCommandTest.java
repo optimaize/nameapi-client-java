@@ -81,6 +81,7 @@ public class AL_PersonNameParserCommandTest extends AbstractTest {
         OutputPersonName personName = parsedPerson.getOutputPersonName();
         assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Amelija");
         assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Bektashi");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
     }
     @DataProvider
     protected Object[][] test_AL_3() {
