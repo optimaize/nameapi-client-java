@@ -1,4 +1,4 @@
-package org.nameapi.client.services.riskdetector;
+package org.nameapi.client.services.riskdetector.person;
 
 import com.optimaize.anythingworks.client.rest.http.HeaderParams;
 import com.optimaize.anythingworks.client.rest.http.QueryParams;

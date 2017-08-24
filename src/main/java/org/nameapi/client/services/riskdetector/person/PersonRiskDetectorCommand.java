@@ -1,4 +1,4 @@
-package org.nameapi.client.services.riskdetector;
+package org.nameapi.client.services.riskdetector.person;
 
 import com.google.common.base.Optional;
 import com.optimaize.command4j.ExecutionContext;
@@ -10,11 +10,11 @@ import org.nameapi.ontology5.services.riskdetector.RiskDetectorResult;
 
 import java.util.concurrent.Callable;
 
-public class DetectRisksCommand extends NameApiBaseCommand<RestPort, InputPerson, RiskDetectorResult> {
+public class PersonRiskDetectorCommand extends NameApiBaseCommand<RestPort, InputPerson, RiskDetectorResult> {
 
-    private static final String SERVICE_PATH = "/riskdetector/detect";
+    private static final String SERVICE_PATH = "/riskdetector/person";
 
-    public DetectRisksCommand() {
+    public PersonRiskDetectorCommand() {
         super(RestPort.class);
     }
 

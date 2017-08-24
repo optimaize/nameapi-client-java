@@ -1,11 +1,11 @@
-package functional.java.org.nameapi.client.services.riskdetector;
+package functional.java.org.nameapi.client.services.riskdetector.person;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
-import org.nameapi.client.services.riskdetector.DetectRisksCommand;
+import org.nameapi.client.services.riskdetector.person.PersonRiskDetectorCommand;
 import org.nameapi.ontology5.input.entities.address.StructuredAddressBuilder;
 import org.nameapi.ontology5.input.entities.address.StructuredPlaceInfoBuilder;
 import org.nameapi.ontology5.input.entities.address.StructuredStreetInfoBuilder;
@@ -24,7 +24,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class DetectTest extends AbstractTest {
+public class PersonRiskDetectorCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
@@ -367,7 +367,7 @@ public class DetectTest extends AbstractTest {
     }
 
     private RiskDetectorResult run(InputPerson person) throws Exception {
-        DetectRisksCommand command = new DetectRisksCommand();
+        PersonRiskDetectorCommand command = new PersonRiskDetectorCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         return executor.execute(command, mode, person).get();
     }
