@@ -20,12 +20,11 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class KR_PersonNameParserCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
-
     @Test(dataProvider = "test_KR_1")
     public void test_KR_1(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
@@ -64,6 +63,24 @@ public class KR_PersonNameParserCommandTest extends AbstractTest {
     protected Object[][] test_KR_2() {
         return new Object[][]{
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("동수").surname("박").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_KR_3")
+    public void test_KR_3(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Chae-yeon");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Kim");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_KR_3() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Chae-yeon").surname("Kim").build()).build()}
         };
     }
 

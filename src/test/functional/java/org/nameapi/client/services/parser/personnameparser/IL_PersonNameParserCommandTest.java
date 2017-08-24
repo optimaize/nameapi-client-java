@@ -20,54 +20,52 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres / emilia
+ * @author emilia
  */
-public class FI_PersonNameParserCommandTest extends AbstractTest {
+public class IL_PersonNameParserCommandTest extends AbstractTest {
 
     private final CommandExecutor executor = NameApiRemoteExecutors.get();
 
-    @Test(dataProvider = "test_FI_1")
-    public void test_FI_1(NaturalInputPerson inputPerson) throws Exception {
+    @Test(dataProvider = "test_IL_1")
+    public void test_IL_1(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Väinö");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Johansson");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "נועם");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "לֵוִי");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
     }
     @DataProvider
-    protected Object[][] test_FI_1() {
+    protected Object[][] test_IL_1() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Väinö Johansson").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Väinö").surname("Johansson").build()).build()}
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("נועם לֵוִי").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("נועם").surname("לֵוִי").build()).build()}
         };
     }
 
-    @Test(dataProvider = "test_FI_2")
-    public void test_FI_2(NaturalInputPerson inputPerson) throws Exception {
+    @Test(dataProvider = "test_IL_2")
+    public void test_IL_2(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.SALUTATION).get().getString(), "Herra");
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Väinö");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Johansson");
-        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Noam");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Levi");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
     }
     @DataProvider
-    protected Object[][] test_FI_2() {
+    protected Object[][] test_IL_2() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Herra Väinö Johansson").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Herra Väinö").surname("Johansson").build()).build()}
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Noam Levi").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Noam").surname("Levi").build()).build()}
         };
     }
 
-    //TODO emilia ask if the case should matter in the title; this test fails with the title "teatt. toht."
-    @Test(dataProvider = "test_FI_3")
-    public void test_FI_3(NaturalInputPerson inputPerson) throws Exception {
+    @Test(dataProvider = "test_IL_3")
+    public void test_IL_3(NaturalInputPerson inputPerson) throws Exception {
         PersonNameParserCommand command = new PersonNameParserCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
@@ -76,20 +74,19 @@ public class FI_PersonNameParserCommandTest extends AbstractTest {
 
         /* when there are MULTIPLE people the service returns a list of ParsedPerson */
         ParsedPerson firstPerson = parsedPerson.getPeople().get(0);
-        assertEquals(firstPerson.getOutputPersonName().getFirst(TermType.GIVENNAME).get().getString(), "Väinö");
-        assertEquals(firstPerson.getOutputPersonName().getFirst(TermType.SURNAME).get().getString(), "Johansson");
-        assertEquals(firstPerson.getGender().getGender(), ComputedPersonGender.MALE);
+        assertEquals(firstPerson.getOutputPersonName().getFirst(TermType.GIVENNAME).get().getString(), "Yuval");
+        assertEquals(firstPerson.getOutputPersonName().getFirst(TermType.SURNAME).get().getString(), "Cohen");
+        assertEquals(firstPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
 
         ParsedPerson secondPerson = parsedPerson.getPeople().get(1);
-        assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.TITLE).get().getString(), "Teatt. Toht.");
-        assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.GIVENNAMEINITIAL).get().getString(), "N.");
-        assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.SURNAME).get().getString(), "Lindholm");
-        assertEquals(secondPerson.getGender().getGender(), ComputedPersonGender.UNKNOWN);
+        assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.GIVENNAME).get().getString(), "Noam");
+        assertEquals(secondPerson.getOutputPersonName().getFirst(TermType.SURNAME).get().getString(), "Levi");
+        assertEquals(secondPerson.getGender().getGender(), ComputedPersonGender.NEUTRAL);
     }
     @DataProvider
-    protected Object[][] test_FI_3() {
+    protected Object[][] test_IL_3() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Väinö Johansson ja teatt. toht. N. Lindholm").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Yuval Cohen ve Noam Levi").build()).build()},
         };
     }
 }

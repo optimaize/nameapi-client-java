@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class BG_PersonNameParserCommandTest extends AbstractTest {
 
@@ -44,6 +44,25 @@ public class BG_PersonNameParserCommandTest extends AbstractTest {
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Nikol Georgievna Dimitrova").build()).build()},
                 {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Nikol").middleName("Georgievna").surname("Dimitrova").build()).build()},
                 {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Nikol Georgievna").surname("Dimitrova").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_BG_2")
+    public void test_BG_2(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Dimitar");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Stoyanov");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_BG_2() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Dimitar Stoyanov").build()).build()},
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Dimitar").surname("Stoyanov").build()).build()},
         };
     }
 

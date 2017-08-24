@@ -111,4 +111,43 @@ public class US_PersonNameParserCommandTest extends AbstractTest {
         };
     }
 
+    @Test(dataProvider = "test_US_5")
+    public void test_US_5(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "William");
+        assertEquals(personName.getSecond(TermType.GIVENNAME).get().getString(), "Henry");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Gates");
+        assertEquals(personName.getFirst(TermType.QUALIFIER).get().getString(), "iii");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_US_5() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().fullname("William Henry Gates III").build()).build()},
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("William Henry").surname("Gates III").build()).build()},
+        };
+    }
+
+    @Test(dataProvider = "test_US_6")
+    public void test_US_6(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Jennifer");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Thompson");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_US_6() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().fullname("Jennifer Thompson").build()).build()},
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Jennifer").surname("Thompson").build()).build()},
+        };
+    }
 }

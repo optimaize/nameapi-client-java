@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class BD_PersonNameParserCommandTest extends AbstractTest {
 
@@ -52,15 +52,15 @@ public class BD_PersonNameParserCommandTest extends AbstractTest {
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Khampha");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Keomuongchanh");
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "অভিজিৎ");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "বন্দ্যোপাধ্যায়");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
     protected Object[][] test_BD_2() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Khampha Keomuongchanh").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Khampha").surname("Keomuongchanh").build()).build()}
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("অভিজিৎ বন্দ্যোপাধ্যায়").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("অভিজিৎ").surname("বন্দ্যোপাধ্যায়").build()).build()}
         };
     }
 
@@ -71,15 +71,34 @@ public class BD_PersonNameParserCommandTest extends AbstractTest {
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
         ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
         OutputPersonName personName = parsedPerson.getOutputPersonName();
-        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "অভিজিৎ");
-        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "বন্দ্যোপাধ্যায়");
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Sumon");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Chakraborty");
         assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
     }
     @DataProvider
     protected Object[][] test_BD_3() {
         return new Object[][]{
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("অভিজিৎ বন্দ্যোপাধ্যায়").build()).build()},
-                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("অভিজিৎ").surname("বন্দ্যোপাধ্যায়").build()).build()}
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Sumon Chakraborty").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Sumon").surname("Chakraborty").build()).build()}
+        };
+    }
+
+    @Test(dataProvider = "test_BD_4")
+    public void test_BD_4(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Mainamoty");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Bapary");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_BD_4() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().fullname("Mainamoty Bapary").build()).build()},
+                {new NaturalInputPersonBuilder().name(new WesternInputPersonNameBuilder().givenName("Mainamoty").surname("Bapary").build()).build()}
         };
     }
 

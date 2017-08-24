@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Nicole Torres
+ * @author Nicole Torres / emilia
  */
 public class KZ_PersonNameParserCommandTest extends AbstractTest {
 
@@ -83,4 +83,42 @@ public class KZ_PersonNameParserCommandTest extends AbstractTest {
         };
     }
 
+    @Test(dataProvider = "test_KZ_4")
+    public void test_KZ_4(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Ерасыл");
+        assertEquals(personName.getFirst(TermType.MIDDLENAME).get().getString(), "Нуртаевич");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Калиев");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.MALE);
+    }
+    @DataProvider
+    protected Object[][] test_KZ_4() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Ерасыл").middleName("Нуртаевич").surname("Калиев").build()).build()},
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().fullname("Ерасыл Нуртаевич Калиев").build()).build()},
+        };
+    }
+
+    @Test(dataProvider = "test_KZ_5")
+    public void test_KZ_5(NaturalInputPerson inputPerson) throws Exception {
+        PersonNameParserCommand command = new PersonNameParserCommand();
+        Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        ParsedPerson parsedPerson = result.getBestMatch().getParsedPerson();
+        OutputPersonName personName = parsedPerson.getOutputPersonName();
+        assertEquals(personName.getFirst(TermType.GIVENNAME).get().getString(), "Aruzhan");
+        assertEquals(personName.getFirst(TermType.SURNAME).get().getString(), "Aitkhozhina");
+        assertEquals(parsedPerson.getGender().getGender(), ComputedPersonGender.FEMALE);
+    }
+    @DataProvider
+    protected Object[][] test_KZ_5() {
+        return new Object[][]{
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().givenName("Aruzhan").surname("Aitkhozhina").build()).build()},
+                {new NaturalInputPersonBuilder().name(new AmericanInputPersonNameBuilder().fullname("Aruzhan Aitkhozhina").build()).build()},
+        };
+    }
 }
