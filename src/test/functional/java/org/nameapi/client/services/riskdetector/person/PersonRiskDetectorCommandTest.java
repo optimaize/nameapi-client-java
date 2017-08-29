@@ -1,11 +1,10 @@
-package functional.java.org.nameapi.client.services.riskdetector.person;
+package org.nameapi.client.services.riskdetector.person;
 
 import com.optimaize.command4j.CommandExecutor;
 import com.optimaize.command4j.Mode;
 import org.nameapi.client.lib.NameApiRemoteExecutors;
 import org.nameapi.client.services.AbstractTest;
 import org.nameapi.client.services.FunctionalTestsNameApiModeFactory;
-import org.nameapi.client.services.riskdetector.person.PersonRiskDetectorCommand;
 import org.nameapi.ontology5.input.entities.address.StructuredAddressBuilder;
 import org.nameapi.ontology5.input.entities.address.StructuredPlaceInfoBuilder;
 import org.nameapi.ontology5.input.entities.address.StructuredStreetInfoBuilder;
@@ -45,7 +44,7 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
                 {"Barak Obama", DataItem.NAME, FakeRiskType.FAMOUS},
                 {"Mickey Mouse", DataItem.NAME, FakeRiskType.FICTIONAL},
                 {"Asdf asdf", DataItem.NAME, FakeRiskType.INVALID},
-                {"Sandy Beach", DataItem.NAME, FakeRiskType.HUMEROUS},
+                {"Sandy Beach", DataItem.NAME, FakeRiskType.HUMOROUS},
 //                {"Віталій Кличко", DataItem.NAME, FakeRiskType.FAMOUS},
                 {"Asdfdsadsdasdasvvvvfvasdf", DataItem.NAME, FakeRiskType.RANDOM_TYPING},
 
@@ -76,16 +75,16 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
                 {"Barak", "Obama", DataItem.NAME, FakeRiskType.FAMOUS},
                 {"Mickey", "Mouse", DataItem.NAME, FakeRiskType.FICTIONAL},
                 {"Asdf", "asdf", DataItem.NAME, FakeRiskType.RANDOM_TYPING},
-                {"Sandy", "Beach", DataItem.NAME, FakeRiskType.HUMEROUS},
+                {"Sandy", "Beach", DataItem.NAME, FakeRiskType.HUMOROUS},
 //                {"Віталій", "Кличко", DataItem.NAME, FakeRiskType.FAMOUS},
                 {"Asdfdsadsd", "asdasvvvvfvasdf", DataItem.NAME, FakeRiskType.RANDOM_TYPING},
 
                 {"Stupid", "Cow", DataItem.NAME, FakeRiskType.INVALID},
 
-                {"xxxPeter", "Meyerxxx", DataItem.NAME, DisguisedRiskType.OTHER},
+                {"xxxPeter", "Meyerxxx", DataItem.NAME, DisguiseRiskType.OTHER},
                 // get 2 risks with equal score=1: invalid(too many extra char.) and disguised(spaced typing)
                 {"P e t e r", "M e y e r", DataItem.NAME, FakeRiskType.INVALID},
-                {"Petttter", "Meyyyyer", DataItem.NAME, DisguisedRiskType.OTHER},
+                {"Petttter", "Meyyyyer", DataItem.NAME, DisguiseRiskType.OTHER},
                 {"Firstname", "Lastname", DataItem.NAME, FakeRiskType.INVALID},
         };
     }
@@ -133,14 +132,14 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
     protected Object[][] placeNames_risk() {
         return new Object[][] {
                 {"dsadasdsadqwdqw", DataItem.ADDRESS, FakeRiskType.RANDOM_TYPING},
-                {"xxxmunichxxx", DataItem.ADDRESS, DisguisedRiskType.PADDING},
-                {"Z u r i c h", DataItem.ADDRESS, DisguisedRiskType.SPACEDTYPING},
-                {"Zurrrrich", DataItem.ADDRESS, DisguisedRiskType.STUTTERTYPING},
+                {"xxxmunichxxx", DataItem.ADDRESS, DisguiseRiskType.PADDING},
+                {"Z u r i c h", DataItem.ADDRESS, DisguiseRiskType.SPACED_TYPING},
+                {"Zurrrrich", DataItem.ADDRESS, DisguiseRiskType.STUTTER_TYPING},
                 {"урюпинск", DataItem.ADDRESS, FakeRiskType.PLACEHOLDER},
                 {"Урюпинск", DataItem.ADDRESS, FakeRiskType.PLACEHOLDER},
                 {"Мухосранск", DataItem.ADDRESS, FakeRiskType.PLACEHOLDER},
                 {"бобруйск", DataItem.ADDRESS, FakeRiskType.PLACEHOLDER},
-                {"black stump", DataItem.ADDRESS, FakeRiskType.HUMEROUS},
+                {"black stump", DataItem.ADDRESS, FakeRiskType.HUMOROUS},
                 {"Mortshire", DataItem.ADDRESS, FakeRiskType.FICTIONAL},
                 {"Jerkwater", DataItem.ADDRESS, FakeRiskType.INVALID},
                 {"Hollywood", DataItem.ADDRESS, FakeRiskType.FAMOUS},
@@ -195,9 +194,9 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
     protected Object[][] streetNames_risk() {
         return new Object[][] {
                 {"dsadasdsadqwdqw", DataItem.ADDRESS, FakeRiskType.RANDOM_TYPING},
-                {"xxxfriedrichstrassexxx", DataItem.ADDRESS, DisguisedRiskType.PADDING},
-                {"F r i e d r i c h s t r a s s e", DataItem.ADDRESS, DisguisedRiskType.SPACEDTYPING},
-                {"Friedrrrrrichstrasse", DataItem.ADDRESS, DisguisedRiskType.STUTTERTYPING},
+                {"xxxfriedrichstrassexxx", DataItem.ADDRESS, DisguiseRiskType.PADDING},
+                {"F r i e d r i c h s t r a s s e", DataItem.ADDRESS, DisguiseRiskType.SPACED_TYPING},
+                {"Friedrrrrrichstrasse", DataItem.ADDRESS, DisguiseRiskType.STUTTER_TYPING},
         };
     }
 
@@ -242,14 +241,14 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
     @DataProvider
     protected Object[][] emailAddresses_risk() {
         return new Object[][] {
-                {"dqwdqw@dsds.sddsa", DataItem.EMAIL_ADDRESS, FakeRiskType.RANDOM_TYPING},
-                {"bill@microsoft.com", DataItem.EMAIL_ADDRESS, FakeRiskType.OTHER},
-                {"bill@microsoft.de", DataItem.EMAIL_ADDRESS, FakeRiskType.OTHER},
-                {"asdf@asdf.de", DataItem.EMAIL_ADDRESS, FakeRiskType.OTHER},
-                {"user@domain.com", DataItem.EMAIL_ADDRESS, FakeRiskType.OTHER},
-                {"nobody@nowhere.ua", DataItem.EMAIL_ADDRESS, FakeRiskType.OTHER},
+                {"dqwdqw@dsds.sddsa", DataItem.EMAIL, FakeRiskType.RANDOM_TYPING},
+                {"bill@microsoft.com", DataItem.EMAIL, FakeRiskType.OTHER},
+                {"bill@microsoft.de", DataItem.EMAIL, FakeRiskType.OTHER},
+                {"asdf@asdf.de", DataItem.EMAIL, FakeRiskType.OTHER},
+                {"user@domain.com", DataItem.EMAIL, FakeRiskType.OTHER},
+                {"nobody@nowhere.ua", DataItem.EMAIL, FakeRiskType.OTHER},
                 // disposable
-                {"DaDiDoo@mailinator.com", DataItem.EMAIL_ADDRESS, FakeRiskType.OTHER}
+                {"DaDiDoo@mailinator.com", DataItem.EMAIL, FakeRiskType.OTHER}
         };
     }
 
@@ -329,9 +328,9 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
     @DataProvider
     protected Object[][] birthDates_risk() {
         return new Object[][] {
-                {AgeInfoFactory.forDate(1861, 3, 3), DataItem.BIRTHDATE, FakeRiskType.OTHER},
-                {AgeInfoFactory.forDate(2010, 3, 15), DataItem.BIRTHDATE, FakeRiskType.OTHER},
-                {AgeInfoFactory.forDate(1933, 3, 3), DataItem.BIRTHDATE, FakeRiskType.OTHER},
+                {AgeInfoFactory.forDate(1861, 3, 3), DataItem.AGE, FakeRiskType.OTHER},
+                {AgeInfoFactory.forDate(2010, 3, 15), DataItem.AGE, FakeRiskType.OTHER},
+                {AgeInfoFactory.forDate(1933, 3, 3), DataItem.AGE, FakeRiskType.OTHER},
         };
     }
 

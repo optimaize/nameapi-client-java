@@ -55,7 +55,7 @@ public class PersonGenderizerCommandTest extends AbstractTest {
                                 .streetInfo(
                                         new StructuredStreetInfoBuilder()
                                                 .streetName("Hill road")
-                                                .streetNumber("512")
+                                                .houseNumber("512")
                                                 .build()
                                 )
                                 .build()
