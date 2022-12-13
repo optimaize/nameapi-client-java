@@ -4,6 +4,7 @@ import com.optimaize.anythingworks.client.common.Keys;
 import com.optimaize.anythingworks.client.rest.RestKeys;
 import com.optimaize.anythingworks.client.rest.RestPortUrlFactory;
 import com.optimaize.anythingworks.common.host.Host;
+import com.optimaize.anythingworks.common.host.Protocol;
 import com.optimaize.command4j.Mode;
 import org.jetbrains.annotations.NotNull;
 import org.nameapi.ontology5.input.context.Context;
@@ -15,7 +16,7 @@ import org.nameapi.ontology5.input.context.Context;
  */
 public class NameApiModeFactory {
 
-    private static final Host DEFAULT_HOST = new Host("api.nameapi.org", 80);
+    private static final Host DEFAULT_HOST = new Host("api.nameapi.org", Protocol.HTTPS);
     private static final NameApiPortUrlFactory DEFAULT_PORT_FACTORY = NameApiPortUrlFactory.versionLatestStable();
 
 
@@ -25,7 +26,7 @@ public class NameApiModeFactory {
      * <p>Example: .with(StdoutLoggingExtension.enabled())</p>
      *
      * @param apiKey Your personal api key from registering with us.
-     * @param host for example {@code new Host("api.nameapi.org", 80)}
+     * @param host for example {@code new Host("api.nameapi.org", Protocol.HTTPS)}
      * @param portUrlFactory for example {@code NameApiPortUrlFactory.versionLatestStable()}
      */
     @NotNull
@@ -39,7 +40,7 @@ public class NameApiModeFactory {
 
     /**
      * Overloaded method that uses
-     * for host: {@code new Host("api.nameapi.org", 80)}
+     * for host: {@code new Host("api.nameapi.org", Protocol.HTTPS)}
      * for port url: {@code NameApiPortUrlFactory.versionLatestStable()}
      */
     @NotNull
@@ -55,7 +56,7 @@ public class NameApiModeFactory {
      *
      * @param apiKey Your personal api key from registering with us.
      * @param context for example {@code new ContextBuilder().priority(Priority.REALTIME).build()}
-     * @param host for example {@code new Host("api.nameapi.org", 80)}
+     * @param host for example {@code new Host("api.nameapi.org", Protocol.HTTPS)}
      * @param portUrlFactory for example {@code NameApiPortUrlFactory.versionLatestStable()}
      */
     @NotNull
@@ -65,8 +66,8 @@ public class NameApiModeFactory {
     }
 
     /**
-     * Overloaded method that uses
-     * for host: {@code new Host("api.nameapi.org", 80)}
+     * Overloaded method that uses:
+     * for host: {@code new Host("api.nameapi.org", Protocol.HTTPS)}
      * for port url: {@code NameApiPortUrlFactory.versionLatestStable()}
      */
     @NotNull

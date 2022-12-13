@@ -1,7 +1,7 @@
 nameapi-client-java
 ===================
 
-Java Client for the NameAPI Web Service at http://www.nameapi.org/
+Java Client for the NameAPI Web Service at https://www.nameapi.org
 
 There are functional tests (in test/functional) that demonstrate how to use this library.
 
@@ -46,8 +46,7 @@ Mode mode = NameApiModeFactory.withContext(
         "your-api-key",
         context,
         //the default and live server is "api.nameapi.org"
-        //we're using the latest release candidate with latest features here:
-        new Host("rc50-api.nameapi.org", 80), NameApiPortUrlFactory.versionLatestStable()
+        new Host("api.nameapi.org", Protocol.HTTPS), NameApiPortUrlFactory.version5_3())
 );
 ```
 
