@@ -7,7 +7,7 @@ There are functional tests (in test/functional) that demonstrate how to use this
 
 All you need to send requests is your own api key, get it from nameapi.org.
 
-This library requires at least Java 7.
+This library requires at least Java 8.
 
 
 
