@@ -1,6 +1,7 @@
 package org.nameapi.client.services;
 
 import com.optimaize.anythingworks.common.host.Host;
+import com.optimaize.anythingworks.common.host.Protocol;
 import com.optimaize.command4j.Mode;
 import com.optimaize.command4j.ext.extensions.logging.stdoutlogging.StdoutLoggingExtension;
 import org.jetbrains.annotations.NotNull;
@@ -21,9 +22,7 @@ public class FunctionalTestsNameApiModeFactory extends NameApiModeFactory {
 
     private static final Mode unitTestMode = withContext(API_KEY, makeContext(),
             //the default and live server is "api.nameapi.org"
-            //we're using the latest release candidate with latest features here:
-            new Host("rc50-api.nameapi.org", 80), NameApiPortUrlFactory.versionLatestStable())
-
+            new Host("api.nameapi.org", Protocol.HTTPS), NameApiPortUrlFactory.version5_3())
             //.with(TimeoutExtension.TIMEOUT, Duration.millis(5000))
             .with(StdoutLoggingExtension.enabled())
     ;
@@ -34,7 +33,7 @@ public class FunctionalTestsNameApiModeFactory extends NameApiModeFactory {
         }
         return new ContextBuilder()
                 .priority(Priority.REALTIME)
-        .build();
+                .build();
     }
 
     @NotNull

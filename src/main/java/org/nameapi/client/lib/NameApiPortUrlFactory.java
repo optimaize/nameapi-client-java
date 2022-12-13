@@ -15,35 +15,23 @@ public class NameApiPortUrlFactory extends AbstractRestPortUrlFactory {
     /**
      * This is updated whenever the "latest stable" server api version changes.
      *
-     * Currently this is version 5.0.
+     * Currently this is version 5.3.
      */
     public static NameApiPortUrlFactory versionLatestStable() {
-        return version5_0();
+        return version5_3();
     }
 
     /**
      * This is always set to the latest release candidate, that is the version right before it becomes the latest stable.
      * Such a version does not always exist. After successful testing, it becomes the live version.
      *
-     * Currently this is version 5.3.
+     * Currently there is no release candidate available, so it returns the stable version.
      */
     public static NameApiPortUrlFactory versionLatestReleaseCandidate() {
         return version5_3();
     }
 
-    /**
-     * This is always set to the current main development version.
-     * You do not necessarily have access to this.
-     *
-     * Currently this is version 5.3.
-     */
-    public static NameApiPortUrlFactory versionLatestDevelopment() {
-        return version5_3();
-    }
 
-    public static NameApiPortUrlFactory version5_0() {
-        return new NameApiPortUrlFactory("5.0");
-    }
     public static NameApiPortUrlFactory version5_3() {
         return new NameApiPortUrlFactory("5.3");
     }
