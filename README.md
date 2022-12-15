@@ -1,7 +1,7 @@
 nameapi-client-java
 ===================
 
-Java Client for the NameAPI Web Service at https://www.nameapi.org
+Java Client for the NameAPI Web Service at https://www.nameapi.org 
 
 There are functional tests (in test/functional) that demonstrate how to use this library.
 
