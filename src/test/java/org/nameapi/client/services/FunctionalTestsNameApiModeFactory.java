@@ -25,7 +25,7 @@ public class FunctionalTestsNameApiModeFactory extends NameApiModeFactory {
             new Host("api.nameapi.org", Protocol.HTTPS), NameApiPortUrlFactory.version5_3())
             //.with(TimeoutExtension.TIMEOUT, Duration.millis(5000))
             .with(StdoutLoggingExtension.enabled())
-    ;
+            ;
 
     private static Context makeContext() {
         if (API_KEY==null) {

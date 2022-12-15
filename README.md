@@ -42,12 +42,12 @@ Then you need an executor and a mode:
 
 ```java
 CommandExecutor executor = NameApiRemoteExecutors.get();
-Mode mode = NameApiModeFactory.withContext(
+        Mode mode = NameApiModeFactory.withContext(
         "your-api-key",
         context,
         //the default and live server is "api.nameapi.org"
         new Host("api.nameapi.org", Protocol.HTTPS), NameApiPortUrlFactory.version5_3())
-);
+        );
 ```
 
 Now you're ready to execute commands.
@@ -61,7 +61,7 @@ This code sends a simple ping to nameapi to test the connection:
 
 ```java
 PingCommand command = new PingCommand();
-executor.execute(command, mode, null).get(); //returns "pong"
+        executor.execute(command, mode, null).get(); //returns "pong"
 ```
 
 
@@ -89,7 +89,7 @@ Creating a simple person looks something like this:
 
 ```java
 InputPersonName name = NameBuilders.western().fullname("John F. Kennedy").build();
-InputPerson inputPerson = new NaturalInputPersonBuilder().name(name).build();
+        InputPerson inputPerson = new NaturalInputPersonBuilder().name(name).build();
 ```
 
 
@@ -112,7 +112,7 @@ Using the objects created earlier:
 
 ```java
 PersonNameParserCommand command = new PersonNameParserCommand();
-PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
 ```
 
 
@@ -124,7 +124,7 @@ Using the objects created earlier:
 
 ```java
 PersonGenderizerCommand command = new PersonGenderizerCommand();
-GenderizerResult result = executor.execute(command, mode, inputPerson).get();
+        GenderizerResult result = executor.execute(command, mode, inputPerson).get();
 ```
 
 
@@ -136,10 +136,10 @@ This service takes 2 people as input:
 
 ```java
 PersonMatcherCommand command = new PersonMatcherCommand();
-NaturalInputPerson person1 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("John F. Kennedy").build() ).build();
-NaturalInputPerson person2 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("Jack Kennedy").build() ).build();
-PersonMatcherArgument argument = new PersonMatcherArgument(person1, person2);
-PersonMatcherResult result = executor.execute(command, mode, argument).get();
+        NaturalInputPerson person1 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("John F. Kennedy").build() ).build();
+        NaturalInputPerson person2 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("Jack Kennedy").build() ).build();
+        PersonMatcherArgument argument = new PersonMatcherArgument(person1, person2);
+        PersonMatcherResult result = executor.execute(command, mode, argument).get();
 ```
 
 
@@ -149,10 +149,10 @@ The Name Formatter displays personal names in the desired form. This includes th
 
 ```java
 PersonNameFormatterCommand command = new PersonNameFormatterCommand();
-NaturalInputPerson person = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("john f. kennedy").build() ).build();
-FormatterProperties properties = new FormatterProperties(true);
-PersonNameFormatterArgument argument = new PersonNameFormatterArgument(person, properties);
-FormatterResult formatterResult = executor.execute(command, mode, argument).get();
+        NaturalInputPerson person = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("john f. kennedy").build() ).build();
+        FormatterProperties properties = new FormatterProperties(true);
+        PersonNameFormatterArgument argument = new PersonNameFormatterArgument(person, properties);
+        FormatterResult formatterResult = executor.execute(command, mode, argument).get();
 ```
 
 
@@ -162,7 +162,7 @@ The Email Name Parser extracts names out of email addresses.
 
 ```java
 EmailNameParserCommand command = new EmailNameParserCommand();
-EmailNameParserResult result = executor.execute(command, mode, "john.doe@example.com").get();
+        EmailNameParserResult result = executor.execute(command, mode, "john.doe@example.com").get();
 ```
 
 
@@ -172,6 +172,6 @@ The DEA-Detector checks email addresses against a list of known "trash domains" 
 
 ```java
 DisposableEmailAddressDetectorCommand command = new DisposableEmailAddressDetectorCommand();
-DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com").get();
+        DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com").get();
 ```
 

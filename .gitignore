@@ -1,0 +1,8 @@
+.m2/
+.idea/
+*.class
+*.log
+**/*.iml
+target/
+DevOps
+.m2

@@ -21,17 +21,6 @@ public class NameApiPortUrlFactory extends AbstractRestPortUrlFactory {
         return version5_3();
     }
 
-    /**
-     * This is always set to the latest release candidate, that is the version right before it becomes the latest stable.
-     * Such a version does not always exist. After successful testing, it becomes the live version.
-     *
-     * Currently there is no release candidate available, so it returns the stable version.
-     */
-    public static NameApiPortUrlFactory versionLatestReleaseCandidate() {
-        return version5_3();
-    }
-
-
     public static NameApiPortUrlFactory version5_3() {
         return new NameApiPortUrlFactory("5.3");
     }
