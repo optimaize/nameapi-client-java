@@ -20,14 +20,18 @@ Using Maven:
       <artifactId>nameapi-client</artifactId>
       <version>5.3.0</version>
     </dependency>
+    
+Or Gradle:
 
-Or you can download the jar, or check out the source code from this GitHub project.
+    implementation 'org.nameapi.client:nameapi-client:5.3.0'
+
+Also you could download the jar, or check out the source code from this GitHub project.
 
 
 
 ## Setup code
 
-At first you need some includes, to the context information:
+At first, you need some includes, to the context information:
 
 ```java
 import org.nameapi.ontology5.input.context.Context;
