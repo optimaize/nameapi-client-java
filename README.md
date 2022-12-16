@@ -1,7 +1,7 @@
 nameapi-client-java
 ===================
 
-Java Client for the NameAPI Web Services at https://www.nameapi.org 
+Java Client for the NameAPI Web Services at https://www.nameapi.org.
 
 There are functional tests that demonstrate how to use this library.
 
@@ -76,7 +76,7 @@ This code sends a simple ping to nameapi to test the connection:
 import org.nameapi.client.services.system.ping.PingCommand;
 
 PingCommand command = new PingCommand();
-        executor.execute(command, mode, null).get(); //returns "pong"
+executor.execute(command, mode, null).get(); //returns "pong"
 ```
 
 ## Input / Output
@@ -107,7 +107,7 @@ import org.nameapi.ontology5.input.entities.person.name.InputPersonName;
 import org.nameapi.ontology5.input.entities.person.name.builder.NameBuilders;
 
 InputPersonName name = NameBuilders.western().fullname("John F. Kennedy").build();
-        InputPerson inputPerson = new NaturalInputPersonBuilder().name(name).build();
+InputPerson inputPerson = new NaturalInputPersonBuilder().name(name).build();
 ```
 
 
@@ -132,7 +132,7 @@ import org.nameapi.client.services.parser.personnameparser.PersonNameParserComma
 import org.nameapi.ontology5.services.parser.personnameparser.PersonNameParserResult;
 
 PersonNameParserCommand command = new PersonNameParserCommand();
-        PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
+PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
 ```
 
 
@@ -147,7 +147,7 @@ import org.nameapi.client.services.genderizer.persongenderizer.PersonGenderizerC
 import org.nameapi.ontology5.services.genderizer.GenderizerResult;
 
 PersonGenderizerCommand command = new PersonGenderizerCommand();
-        GenderizerResult result = executor.execute(command, mode, inputPerson).get();
+GenderizerResult result = executor.execute(command, mode, inputPerson).get();
 ```
 
 
@@ -165,10 +165,10 @@ import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
 import org.nameapi.ontology5.services.matcher.personmatcher.PersonMatcherResult;
 
 PersonMatcherCommand command = new PersonMatcherCommand();
-        NaturalInputPerson person1 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("John F. Kennedy").build() ).build();
-        NaturalInputPerson person2 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("Jack Kennedy").build() ).build();
-        PersonMatcherArgument argument = new PersonMatcherArgument(person1, person2);
-        PersonMatcherResult result = executor.execute(command, mode, argument).get();
+NaturalInputPerson person1 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("John F. Kennedy").build() ).build();
+NaturalInputPerson person2 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("Jack Kennedy").build() ).build();
+PersonMatcherArgument argument = new PersonMatcherArgument(person1, person2);
+PersonMatcherResult result = executor.execute(command, mode, argument).get();
 ```
 
 
@@ -185,10 +185,10 @@ import org.nameapi.ontology5.services.formatter.FormatterProperties;
 import org.nameapi.ontology5.services.formatter.FormatterResult;
 
 PersonNameFormatterCommand command = new PersonNameFormatterCommand();
-        NaturalInputPerson person = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("john f. kennedy").build() ).build();
-        FormatterProperties properties = new FormatterProperties(true);
-        PersonNameFormatterArgument argument = new PersonNameFormatterArgument(person, properties);
-        FormatterResult formatterResult = executor.execute(command, mode, argument).get();
+NaturalInputPerson person = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("john f. kennedy").build() ).build();
+FormatterProperties properties = new FormatterProperties(true);
+PersonNameFormatterArgument argument = new PersonNameFormatterArgument(person, properties);
+FormatterResult formatterResult = executor.execute(command, mode, argument).get();
 ```
 
 
@@ -201,7 +201,7 @@ import org.nameapi.client.services.email.emailnameparser.EmailNameParserCommand;
 import org.nameapi.ontology5.services.email.emailnameparser.EmailNameParserResult;
 
 EmailNameParserCommand command = new EmailNameParserCommand();
-        EmailNameParserResult result = executor.execute(command, mode, "john.doe@example.com").get();
+EmailNameParserResult result = executor.execute(command, mode, "john.doe@example.com").get();
 ```
 
 
@@ -214,6 +214,6 @@ import org.nameapi.client.services.email.disposableemailaddressdetector.Disposab
 import org.nameapi.ontology5.services.email.disposableemailaddressdetector.DisposableEmailAddressDetectorResult;
 
 DisposableEmailAddressDetectorCommand command = new DisposableEmailAddressDetectorCommand();
-        DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com").get();
+DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com").get();
 ```
 
