@@ -1,11 +1,11 @@
 nameapi-client-java
 ===================
 
-Java Client for the NameAPI Web Service at https://www.nameapi.org 
+Java Client for the NameAPI Web Services at https://www.nameapi.org 
 
-There are functional tests (in test/functional) that demonstrate how to use this library.
+There are functional tests that demonstrate how to use this library.
 
-All you need to send requests is your own api key, get it from nameapi.org.
+All you need to send requests is your own api key which you can get from nameapi.org.
 
 This library requires at least Java 8.
 
@@ -27,8 +27,13 @@ Or you can download the jar, or check out the source code from this GitHub proje
 
 ## Setup code
 
-At first you need one single include, the one to the nameapi service factory:
+At first you need some includes, to the context information:
 
+```java
+import org.nameapi.ontology5.input.context.Context;
+import org.nameapi.ontology5.input.context.ContextBuilder;
+import org.nameapi.ontology5.input.context.Priority;
+```
 
 You need a Context that explains a bit your working environment, something like:
 
@@ -41,13 +46,21 @@ Context context = new ContextBuilder()
 Then you need an executor and a mode:
 
 ```java
+import com.optimaize.anythingworks.common.host.Host;
+import com.optimaize.anythingworks.common.host.Protocol;
+import com.optimaize.command4j.CommandExecutor;
+import com.optimaize.command4j.Mode;
+import org.nameapi.client.lib.NameApiModeFactory;
+import org.nameapi.client.lib.NameApiPortUrlFactory;
+import org.nameapi.client.lib.NameApiRemoteExecutors;
+
 CommandExecutor executor = NameApiRemoteExecutors.get();
-        Mode mode = NameApiModeFactory.withContext(
+Mode mode = NameApiModeFactory.withContext(
         "your-api-key",
         context,
         //the default and live server is "api.nameapi.org"
-        new Host("api.nameapi.org", Protocol.HTTPS), NameApiPortUrlFactory.version5_3())
-        );
+        new Host("api.nameapi.org", Protocol.HTTPS), NameApiPortUrlFactory.version5_3()
+);
 ```
 
 Now you're ready to execute commands.
@@ -60,11 +73,11 @@ Now you're ready to execute commands.
 This code sends a simple ping to nameapi to test the connection:
 
 ```java
+import org.nameapi.client.services.system.ping.PingCommand;
+
 PingCommand command = new PingCommand();
         executor.execute(command, mode, null).get(); //returns "pong"
 ```
-
-
 
 ## Input / Output
 
@@ -88,10 +101,14 @@ and is very convenient in accepting the data however you have it at hands.
 Creating a simple person looks something like this:
 
 ```java
+import org.nameapi.ontology5.input.entities.person.InputPerson;
+import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology5.input.entities.person.name.InputPersonName;
+import org.nameapi.ontology5.input.entities.person.name.builder.NameBuilders;
+
 InputPersonName name = NameBuilders.western().fullname("John F. Kennedy").build();
         InputPerson inputPerson = new NaturalInputPersonBuilder().name(name).build();
 ```
-
 
 
 ## Commands
@@ -111,6 +128,9 @@ Name parsing is the process of splitting a full name into its components.
 Using the objects created earlier:
 
 ```java
+import org.nameapi.client.services.parser.personnameparser.PersonNameParserCommand;
+import org.nameapi.ontology5.services.parser.personnameparser.PersonNameParserResult;
+
 PersonNameParserCommand command = new PersonNameParserCommand();
         PersonNameParserResult result = executor.execute(command, mode, inputPerson).get();
 ```
@@ -123,6 +143,9 @@ Name genderizing is the process of identifying the gender based on a person's na
 Using the objects created earlier:
 
 ```java
+import org.nameapi.client.services.genderizer.persongenderizer.PersonGenderizerCommand;
+import org.nameapi.ontology5.services.genderizer.GenderizerResult;
+
 PersonGenderizerCommand command = new PersonGenderizerCommand();
         GenderizerResult result = executor.execute(command, mode, inputPerson).get();
 ```
@@ -135,6 +158,12 @@ The Name Matcher compares names and name pairs to discover whether the people co
 This service takes 2 people as input:
 
 ```java
+import org.nameapi.client.services.matcher.personmatcher.PersonMatcherArgument;
+import org.nameapi.client.services.matcher.personmatcher.PersonMatcherCommand;
+import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
+import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology5.services.matcher.personmatcher.PersonMatcherResult;
+
 PersonMatcherCommand command = new PersonMatcherCommand();
         NaturalInputPerson person1 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("John F. Kennedy").build() ).build();
         NaturalInputPerson person2 = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("Jack Kennedy").build() ).build();
@@ -148,6 +177,13 @@ PersonMatcherCommand command = new PersonMatcherCommand();
 The Name Formatter displays personal names in the desired form. This includes the order as well as upper and lower case writing.
 
 ```java
+import org.nameapi.client.services.formatter.personnameformatter.PersonNameFormatterArgument;
+import org.nameapi.client.services.formatter.personnameformatter.PersonNameFormatterCommand;
+import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
+import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology5.services.formatter.FormatterProperties;
+import org.nameapi.ontology5.services.formatter.FormatterResult;
+
 PersonNameFormatterCommand command = new PersonNameFormatterCommand();
         NaturalInputPerson person = new NaturalInputPersonBuilder().name( NameBuilders.western().fullname("john f. kennedy").build() ).build();
         FormatterProperties properties = new FormatterProperties(true);
@@ -161,6 +197,9 @@ PersonNameFormatterCommand command = new PersonNameFormatterCommand();
 The Email Name Parser extracts names out of email addresses.
 
 ```java
+import org.nameapi.client.services.email.emailnameparser.EmailNameParserCommand;
+import org.nameapi.ontology5.services.email.emailnameparser.EmailNameParserResult;
+
 EmailNameParserCommand command = new EmailNameParserCommand();
         EmailNameParserResult result = executor.execute(command, mode, "john.doe@example.com").get();
 ```
@@ -171,6 +210,9 @@ EmailNameParserCommand command = new EmailNameParserCommand();
 The DEA-Detector checks email addresses against a list of known "trash domains" such as mailinator.com.
 
 ```java
+import org.nameapi.client.services.email.disposableemailaddressdetector.DisposableEmailAddressDetectorCommand;
+import org.nameapi.ontology5.services.email.disposableemailaddressdetector.DisposableEmailAddressDetectorResult;
+
 DisposableEmailAddressDetectorCommand command = new DisposableEmailAddressDetectorCommand();
         DisposableEmailAddressDetectorResult result = executor.execute(command, mode, "blahblah@10minutemail.com").get();
 ```

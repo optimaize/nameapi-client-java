@@ -44,21 +44,7 @@
         <ontology.version>5.3.4</ontology.version>
         <swagger-annotations-version>1.5.4</swagger-annotations-version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <repo-base-url>https://artif4ctory.optimaize.com</repo-base-url>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>optimaize-release</id>
-            <url>${repo-base-url}/artifactory/libs-release-local</url>
-            <releases><enabled>true</enabled></releases>
-        </repository>
-        <repository>
-            <id>optimaize-snapshot</id>
-            <url>${repo-base-url}/artifactory/libs-snapshot-local</url>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-    </repositories>
 
     <build>
         <resources>
