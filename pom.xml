@@ -5,7 +5,7 @@
     <groupId>org.nameapi.client</groupId>
     <artifactId>nameapi-client</artifactId>
     <name>nameapi-client</name>
-    <version>5.3.0</version>
+    <version>5.4.0</version>
 
     <url>https://github.com/optimaize/nameapi-client-java</url>
     <description>
@@ -40,11 +40,25 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <anythingworks.version>0.5</anythingworks.version>
-        <ontology.version>5.3.4</ontology.version>
+        <anythingworks.version>1.1.0</anythingworks.version>
+        <ontology.version>5.4.0</ontology.version>
         <swagger-annotations-version>1.5.4</swagger-annotations-version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <repo-base-url>https://repo1.maven.org</repo-base-url>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>optimaize-release</id>
+            <url>${repo-base-url}/maven2</url>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>optimaize-snapshot</id>
+            <url>${repo-base-url}/maven2</url>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
 
     <build>
         <resources>
@@ -217,7 +231,108 @@
             <groupId>com.optimaize.anythingworks.client.rest</groupId>
             <artifactId>anythingworks-client-rest</artifactId>
             <version>${anythingworks.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-core</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-datatype-guava</artifactId>
+                    <groupId>com.fasterxml.jackson.datatype</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-jaxrs-base</artifactId>
+                    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-jaxrs-json-provider</artifactId>
+                    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-module-jaxb-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>javassist</artifactId>
+                    <groupId>org.javassist</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jersey-common</artifactId>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jersey-media-multipart</artifactId>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jersey-client</artifactId>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>jackson-core</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>jackson-datatype-guava</artifactId>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>jackson-jaxrs-base</artifactId>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <version>2.14.1</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>javassist</artifactId>
+            <groupId>org.javassist</groupId>
+            <version>3.29.2-GA</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>jersey-common</artifactId>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <version>2.25.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>jersey-media-multipart</artifactId>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <version>2.25.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.bundles.repackaged</groupId>
+            <artifactId>jersey-guava</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.nameapi.ontology.core</groupId>

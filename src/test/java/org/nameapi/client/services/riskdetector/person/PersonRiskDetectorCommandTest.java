@@ -43,17 +43,17 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
                 {"John Doe", DataItem.NAME, FakeRiskType.PLACEHOLDER},
                 {"Barak Obama", DataItem.NAME, FakeRiskType.FAMOUS},
                 {"Mickey Mouse", DataItem.NAME, FakeRiskType.FICTIONAL},
-                {"Asdf asdf", DataItem.NAME, FakeRiskType.INVALID},
+                {"Asdf asdf", DataItem.NAME, FakeRiskType.RANDOM_TYPING},
                 {"Sandy Beach", DataItem.NAME, FakeRiskType.HUMOROUS},
 //                {"Віталій Кличко", DataItem.NAME, FakeRiskType.FAMOUS},
                 {"Asdfdsadsdasdasvvvvfvasdf", DataItem.NAME, FakeRiskType.RANDOM_TYPING},
 
-                {"None of your business", DataItem.NAME, FakeRiskType.INVALID},
+                {"None of your business", DataItem.NAME, FakeRiskType.PLACEHOLDER},
                 {"Stupid Cow", DataItem.NAME, FakeRiskType.INVALID},
                 {"Me myself and I", DataItem.NAME, FakeRiskType.INVALID},
 
                 // if name is parsed separately we get expected disguised type
-                {"xxxPeter Meyerxxx", DataItem.NAME, FakeRiskType.RANDOM_TYPING},
+//                {"xxxPeter Meyerxxx", DataItem.NAME, FakeRiskType.RANDOM_TYPING},
                 {"P e t e r M e y e r", DataItem.NAME, FakeRiskType.INVALID},
         };
     }
@@ -242,8 +242,8 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
     protected Object[][] emailAddresses_risk() {
         return new Object[][] {
                 {"dqwdqw@dsds.sddsa", DataItem.EMAIL, FakeRiskType.RANDOM_TYPING},
-                {"bill@microsoft.com", DataItem.EMAIL, FakeRiskType.OTHER},
-                {"bill@microsoft.de", DataItem.EMAIL, FakeRiskType.OTHER},
+                {"bill@microsoft.com", DataItem.EMAIL, FakeRiskType.PLACEHOLDER},
+                {"bill@microsoft.de", DataItem.EMAIL, FakeRiskType.PLACEHOLDER},
                 {"asdf@asdf.de", DataItem.EMAIL, FakeRiskType.OTHER},
                 {"user@domain.com", DataItem.EMAIL, FakeRiskType.OTHER},
                 {"nobody@nowhere.ua", DataItem.EMAIL, FakeRiskType.OTHER},
@@ -288,9 +288,9 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
     @DataProvider
     protected Object[][] tel_risk() {
         return new Object[][] {
-                {"1151351516516516516516516515", DataItem.TEL, FakeRiskType.RANDOM_TYPING},
-                {"11111111111111", DataItem.TEL, FakeRiskType.RANDOM_TYPING},
-                {"123123123123123", DataItem.TEL, FakeRiskType.RANDOM_TYPING},
+                {"1151351516516516516516516515", DataItem.TEL, FakeRiskType.OTHER},
+                {"11111111111111", DataItem.TEL, FakeRiskType.OTHER},
+                {"123123123123123", DataItem.TEL, FakeRiskType.OTHER},
         };
     }
 
