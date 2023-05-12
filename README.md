@@ -18,12 +18,12 @@ Using Maven:
     <dependency>
       <groupId>org.nameapi.client</groupId>
       <artifactId>nameapi-client</artifactId>
-      <version>5.4.0</version>
+      <version>5.4.1</version>
     </dependency>
     
 Or Gradle:
 
-    implementation 'org.nameapi.client:nameapi-client:5.4.0'
+    implementation 'org.nameapi.client:nameapi-client:5.4.1'
 
 Also you could download the jar, or check out the source code from this GitHub project.
 

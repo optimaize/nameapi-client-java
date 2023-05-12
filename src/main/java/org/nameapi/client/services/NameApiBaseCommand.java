@@ -16,7 +16,7 @@ import java.net.URL;
  */
 public abstract class NameApiBaseCommand<T, A, R> extends RestBaseCommand<T, A, R> {
 
-    protected static String CLIENT_VERSION = "NameAPI Java Client 5.4.0";
+    protected static String CLIENT_VERSION = "NameAPI Java Client 5.4.1";
 
     protected NameApiBaseCommand(@NotNull Class<T> wsdlPortType) {
         super(wsdlPortType);
