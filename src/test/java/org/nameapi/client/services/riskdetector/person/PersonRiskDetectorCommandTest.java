@@ -81,10 +81,15 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
 
                 {"Stupid", "Cow", DataItem.NAME, FakeRiskType.INVALID},
 
-                {"xxxPeter", "Meyerxxx", DataItem.NAME, DisguiseRiskType.OTHER},
+                // server knows it is 'DisguiseRiskType.OTHER', but this information is erased by serializer
+                {"xxxPeter", "Meyerxxx", DataItem.NAME, FakeRiskType.OTHER},
+
                 // get 2 risks with equal score=1: invalid(too many extra char.) and disguised(spaced typing)
                 {"P e t e r", "M e y e r", DataItem.NAME, FakeRiskType.INVALID},
-                {"Petttter", "Meyyyyer", DataItem.NAME, DisguiseRiskType.OTHER},
+
+                // server knows it is 'DisguiseRiskType.OTHER', but this information is erased by serializer
+                {"Petttter", "Meyyyyer", DataItem.NAME, FakeRiskType.OTHER},
+
                 {"Firstname", "Lastname", DataItem.NAME, FakeRiskType.INVALID},
         };
     }

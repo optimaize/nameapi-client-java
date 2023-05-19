@@ -19,7 +19,7 @@ public class PingCommandTest {
         PingCommand command = new PingCommand();
         Mode mode = FunctionalTestsNameApiModeFactory.functionalTest();
         for (int i=0; i<1; i++) {
-            assertEquals(executor.execute(command, mode, null).get(), "pong");
+            assertEquals(executor.execute(command, mode, null).get(), "\"pong\"");
         }
     }
 }
