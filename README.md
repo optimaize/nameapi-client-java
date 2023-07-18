@@ -196,6 +196,33 @@ FormatterResult formatterResult = executor.execute(command, mode, argument).get(
 ```
 
 
+## Risk Detector
+
+Detects various types of possibly fake data in person records.
+
+```java
+import org.nameapi.client.services.formatter.personnameformatter.PersonNameFormatterArgument;
+import org.nameapi.client.services.formatter.personnameformatter.PersonNameFormatterCommand;
+import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
+import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
+import org.nameapi.ontology5.services.formatter.FormatterProperties;
+import org.nameapi.ontology5.services.formatter.FormatterResult;
+
+PersonRiskDetectorCommand command = new PersonRiskDetectorCommand();
+InputPerson person = new NaturalInputPersonBuilder()
+        .name(new WesternInputPersonNameBuilder().givenName("John").surname("Doe").build())
+        .addEmail(EmailAddressFactory.forAddress("john.doe@example.com"))
+        .addTelNumber(TelNumberFactory.forNumber("999 999 999"))
+        .addAddressForAll(
+            new StructuredAddressBuilder()
+                .placeInfo(new StructuredPlaceInfoBuilder().locality("Atlantis").postalCode("55555").build())
+                .streetInfo(new StructuredStreetInfoBuilder().streetName("Hill road").houseNumber("72").build())
+               .build())
+        .build();
+executor.execute(command, mode, person).get();
+```
+
+
 ## Email Name Parser
 
 The Email Name Parser extracts names out of email addresses.
