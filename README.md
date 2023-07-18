@@ -201,12 +201,15 @@ FormatterResult formatterResult = executor.execute(command, mode, argument).get(
 Detects various types of possibly fake data in person records.
 
 ```java
-import org.nameapi.client.services.formatter.personnameformatter.PersonNameFormatterArgument;
-import org.nameapi.client.services.formatter.personnameformatter.PersonNameFormatterCommand;
-import org.nameapi.ontology5.input.entities.person.NaturalInputPerson;
+import org.nameapi.ontology5.input.entities.address.StructuredAddressBuilder;
+import org.nameapi.ontology5.input.entities.address.StructuredPlaceInfoBuilder;
+import org.nameapi.ontology5.input.entities.address.StructuredStreetInfoBuilder;
+import org.nameapi.ontology5.input.entities.contact.EmailAddressFactory;
+import org.nameapi.ontology5.input.entities.contact.TelNumberFactory;
+import org.nameapi.ontology5.input.entities.person.InputPerson;
 import org.nameapi.ontology5.input.entities.person.NaturalInputPersonBuilder;
-import org.nameapi.ontology5.services.formatter.FormatterProperties;
-import org.nameapi.ontology5.services.formatter.FormatterResult;
+import org.nameapi.ontology5.input.entities.person.name.builder.WesternInputPersonNameBuilder;
+import org.nameapi.ontology5.services.riskdetector.*;
 
 PersonRiskDetectorCommand command = new PersonRiskDetectorCommand();
 InputPerson person = new NaturalInputPersonBuilder()
@@ -219,7 +222,7 @@ InputPerson person = new NaturalInputPersonBuilder()
                 .streetInfo(new StructuredStreetInfoBuilder().streetName("Hill road").houseNumber("72").build())
                .build())
         .build();
-executor.execute(command, mode, person).get();
+RiskDetectorResult result = executor.execute(command, mode, person).get();
 ```
 
 
