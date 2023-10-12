@@ -117,6 +117,36 @@ public class PersonRiskDetectorCommandTest extends AbstractTest {
         };
     }
 
+    @Test(dataProvider = "allFields_risk")
+    public void allFields_risk(String gn, String sn, String email, String telephone,
+                               String postalCode, String placeName, String streetName, String houseNumber,
+                               int numberOfRisks, DataItem dataItem, RiskType riskType) throws Exception {
+        InputPerson person = new NaturalInputPersonBuilder()
+                .name(makeName(gn, sn))
+                .addEmail(EmailAddressFactory.forAddress(email))
+                .addTelNumber(TelNumberFactory.forNumber(telephone))
+                .addAddressForAll(
+                    new StructuredAddressBuilder()
+                        .placeInfo(new StructuredPlaceInfoBuilder().locality(placeName).postalCode(postalCode).build())
+                        .streetInfo(new StructuredStreetInfoBuilder().streetName(streetName).houseNumber(houseNumber).build())
+                        .build())
+                .build();
+        RiskDetectorResult result = run(person);
+        assertEquals(result.getRisks().size(), numberOfRisks);
+        assertTrue(result.getWorstRisk().isPresent());
+        DetectedRisk mostRisky = result.getWorstRisk().get();
+        assertEquals(mostRisky.getDataItem(), dataItem);
+        assertEquals(mostRisky.getRiskType(), riskType);
+    }
+    @DataProvider
+    protected Object[][] allFields_risk() {
+        return new Object[][]{
+                {"John", "Doe", "info@example.com", "999 999 999", "55555", "Atlantis", "Hill road", "72", 7, DataItem.EMAIL, FakeRiskType.OTHER},
+                {"abcd", "efg", "xyz@xyz.com", "000 000 000 000", "000", "fsklfksgfs", "sfsf", "000", 8, DataItem.NAME, FakeRiskType.INVALID},
+        };
+    }
+
+
     @Test(dataProvider = "placeNames_risk")
     public void placeNames_risk(String placeName, DataItem dataItem, RiskType riskType) throws Exception {
         InputPerson person = new NaturalInputPersonBuilder()

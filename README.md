@@ -7,7 +7,7 @@ There are functional tests that demonstrate how to use this library.
 
 All you need to send requests is your own api key which you can get from nameapi.org.
 
-This library requires at least Java 8.
+This library requires at least Java 17 starting from version 6.0.0 (use a previous version for Java 8).
 
 
 
@@ -18,12 +18,12 @@ Using Maven:
     <dependency>
       <groupId>org.nameapi.client</groupId>
       <artifactId>nameapi-client</artifactId>
-      <version>5.4.1</version>
+      <version>6.0.0</version>
     </dependency>
     
 Or Gradle:
 
-    implementation 'org.nameapi.client:nameapi-client:5.4.1'
+    implementation 'org.nameapi.client:nameapi-client:6.0.0'
 
 Also you could download the jar, or check out the source code from this GitHub project.
 
@@ -195,7 +195,6 @@ PersonNameFormatterArgument argument = new PersonNameFormatterArgument(person, p
 FormatterResult formatterResult = executor.execute(command, mode, argument).get();
 ```
 
-
 ## Risk Detector
 
 Detects various types of possibly fake data in person records.
@@ -224,6 +223,7 @@ InputPerson person = new NaturalInputPersonBuilder()
         .build();
 RiskDetectorResult result = executor.execute(command, mode, person).get();
 ```
+
 
 
 ## Email Name Parser
